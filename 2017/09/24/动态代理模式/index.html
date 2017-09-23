@@ -6,14 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://mannggo.github.io/Mannggo">
-  <title>Archives: 2017/9 | 谢仲东’s Blog</title>
+  <title>代理模式之动态代理 | 谢仲东’s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="谢仲东’s Blog">
-<meta property="og:url" content="https://mannggo.github.io/Mannggo/archives/2017/09/index.html">
+  <meta name="description" content="动态代理模式什么是动态代理模式？动态代理模式就是对不同的目标类，能通过一个代理类来完成指定的切入操作。而不需要针对新增的目标类重新设计代理类。 Java如何实现动态代理？还是拿静态代理所用的例子 JDK动态代理这里只给出代理类和测试类的代码，其他代码与静态代理中的相同。代理类：DocumentManagerProxy_JDK.java 1234567891011121314151617181920">
+<meta name="keywords" content="动态代理,代理模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="代理模式之动态代理">
+<meta property="og:url" content="https://mannggo.github.io/Mannggo/2017/09/24/动态代理模式/index.html">
 <meta property="og:site_name" content="谢仲东’s Blog">
+<meta property="og:description" content="动态代理模式什么是动态代理模式？动态代理模式就是对不同的目标类，能通过一个代理类来完成指定的切入操作。而不需要针对新增的目标类重新设计代理类。 Java如何实现动态代理？还是拿静态代理所用的例子 JDK动态代理这里只给出代理类和测试类的代码，其他代码与静态代理中的相同。代理类：DocumentManagerProxy_JDK.java 1234567891011121314151617181920">
+<meta property="og:updated_time" content="2017-09-08T02:05:10.461Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="谢仲东’s Blog">
+<meta name="twitter:title" content="代理模式之动态代理">
+<meta name="twitter:description" content="动态代理模式什么是动态代理模式？动态代理模式就是对不同的目标类，能通过一个代理类来完成指定的切入操作。而不需要针对新增的目标类重新设计代理类。 Java如何实现动态代理？还是拿静态代理所用的例子 JDK动态代理这里只给出代理类和测试类的代码，其他代码与静态代理中的相同。代理类：DocumentManagerProxy_JDK.java 1234567891011121314151617181920">
   
     <link rel="alternative" href="/atom.xml" title="谢仲东’s Blog" type="application/atom+xml">
   
@@ -149,36 +154,77 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-动态代理模式" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/Mannggo/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/Mannggo/2017/09/24/动态代理模式/" class="archive-article-date">
-  	<time datetime="2017-09-23T17:59:49.184Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-24</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/Mannggo/2017/09/24/动态代理模式/">代理模式之动态代理</a>
+    <h1 class="article-title" itemprop="name">
+      代理模式之动态代理
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/Mannggo/2017/09/24/动态代理模式/" class="archive-article-date">
+  	<time datetime="2017-09-23T17:59:49.184Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="动态代理模式"><a href="#动态代理模式" class="headerlink" title="动态代理模式"></a>动态代理模式</h1><h2 id="什么是动态代理模式？"><a href="#什么是动态代理模式？" class="headerlink" title="什么是动态代理模式？"></a>什么是动态代理模式？</h2><p>动态代理模式就是对不同的目标类，能通过一个代理类来完成指定的切入操作。而不需要针对新增的目标类重新设计代理类。</p>
+<h2 id="Java如何实现动态代理？"><a href="#Java如何实现动态代理？" class="headerlink" title="Java如何实现动态代理？"></a>Java如何实现动态代理？</h2><p>还是拿静态代理所用的例子</p>
+<h3 id="JDK动态代理"><a href="#JDK动态代理" class="headerlink" title="JDK动态代理"></a>JDK动态代理</h3><p>这里只给出代理类和测试类的代码，其他代码与静态代理中的相同。<br>代理类：DocumentManagerProxy_JDK.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.proxypattern;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.lang.reflect.InvocationHandler;</div><div class="line"><span class="keyword">import</span> java.lang.reflect.Method;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * <span class="doctag">@author</span> zdxie</span></div><div class="line"><span class="comment"> * <span class="doctag">@Date</span> 上午 9:16 2017/9/6 </span></div><div class="line"><span class="comment"> * <span class="doctag">@Description</span> 实现InvocationHandler接口，编写invoke方法。所有工作都在invoke方法中完成。</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DocumentManagerProxy_JDK</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span></span>&#123;</div><div class="line">    <span class="keyword">private</span> Logger logger;</div><div class="line">    <span class="keyword">private</span> Privilege privilege;</div><div class="line">    <span class="keyword">private</span> Object target;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DocumentManagerProxy_JDK</span><span class="params">(Logger logger, Privilege privilege, Object target)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.logger = logger;</div><div class="line">        <span class="keyword">this</span>.privilege = privilege;</div><div class="line">        <span class="keyword">this</span>.target = target;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//所有工作都在invoke方法中完成</span></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.privilege.getKey().equals(<span class="string">"root"</span>))&#123;</div><div class="line">            <span class="keyword">this</span>.logger.writeLog(<span class="string">"权限验证通过!"</span>);</div><div class="line">            <span class="comment">//调用目标方法</span></div><div class="line">            method.invoke(<span class="keyword">this</span>.target,args);</div><div class="line">            <span class="keyword">this</span>.logger.writeLog(<span class="string">"操作成功!"</span>);</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            System.out.println(<span class="string">"Error:没有权限，操作失败！"</span>);</div><div class="line">            <span class="keyword">this</span>.logger.writeLog(<span class="string">"没有权限，操作失败"</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>测试方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testDocument_JDK</span><span class="params">()</span></span>&#123;</div><div class="line">        DocumentManager manager = <span class="keyword">new</span> DocumentManagerImpl();</div><div class="line">        Logger logger = <span class="keyword">new</span> Logger();</div><div class="line">        Privilege privilege = <span class="keyword">new</span> Privilege();</div><div class="line">        privilege.setKey(<span class="string">"root"</span>);</div><div class="line">        DocumentManagerProxy_JDK proxy_jdk = <span class="keyword">new</span> DocumentManagerProxy_JDK(logger,privilege,manager);</div><div class="line">        <span class="comment">//获取代理对象实例</span></div><div class="line">        DocumentManager manager_1 = (DocumentManager) Proxy.newProxyInstance(manager.getClass().getClassLoader(),</div><div class="line">                manager.getClass().getInterfaces(),proxy_jdk);</div><div class="line">        <span class="comment">//在代理对象调用方法的时候，进入了拦截器(代理对象)中的invoke方法</span></div><div class="line">        <span class="comment">//执行的内容就是拦截器中的invoke方法体的内容</span></div><div class="line">        manager_1.readDocument();</div><div class="line">        manager_1.writeDocument();</div><div class="line"></div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h3 id="cglib实现动态代理"><a href="#cglib实现动态代理" class="headerlink" title="cglib实现动态代理"></a>cglib实现动态代理</h3><p>代理类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.proxypattern;</div><div class="line"></div><div class="line"><span class="keyword">import</span> net.sf.cglib.proxy.Enhancer;</div><div class="line"><span class="keyword">import</span> net.sf.cglib.proxy.MethodInterceptor;</div><div class="line"><span class="keyword">import</span> net.sf.cglib.proxy.MethodProxy;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.lang.reflect.Method;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * <span class="doctag">@author</span> zdxie</span></div><div class="line"><span class="comment"> * <span class="doctag">@Date</span> 下午 2:45 2017/9/6 0006</span></div><div class="line"><span class="comment"> * <span class="doctag">@Description</span> 实现cglib提供的MethodInterceptor接口，重写intercept方法，</span></div><div class="line"><span class="comment"> *              并提供创建代理类的方法createProxy</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DocumentManagerProxy_cglib</span> <span class="keyword">implements</span> <span class="title">MethodInterceptor</span></span>&#123;</div><div class="line">    <span class="keyword">private</span> Object target;</div><div class="line">    <span class="keyword">private</span> Privilege privilege;</div><div class="line">    <span class="keyword">private</span> Logger logger;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DocumentManagerProxy_cglib</span><span class="params">(Object target, Privilege privilege, Logger logger)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.target = target;</div><div class="line">        <span class="keyword">this</span>.privilege = privilege;</div><div class="line">        <span class="keyword">this</span>.logger = logger;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">createProxy</span><span class="params">()</span></span>&#123;</div><div class="line">        Enhancer enhancer = <span class="keyword">new</span> Enhancer();</div><div class="line">        <span class="comment">//拦截器对象</span></div><div class="line">        enhancer.setCallback(<span class="keyword">this</span>);</div><div class="line">        <span class="comment">//设置代理类的父类为目标类</span></div><div class="line">        enhancer.setSuperclass(target.getClass());</div><div class="line">        <span class="keyword">return</span> enhancer.create();</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">intercept</span><span class="params">(Object o, Method method, Object[] objects, MethodProxy methodProxy)</span> <span class="keyword">throws</span> Throwable </span>&#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.privilege.getKey().equals(<span class="string">"root"</span>))&#123;</div><div class="line">            <span class="keyword">this</span>.logger.writeLog(<span class="string">"权限验证通过!"</span>);</div><div class="line">            method.invoke(<span class="keyword">this</span>.target,objects);</div><div class="line">            <span class="keyword">this</span>.logger.writeLog(<span class="string">"读取成功!"</span>);</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            System.out.println(<span class="string">"Error:没有权限，读取失败！"</span>);</div><div class="line">            <span class="keyword">this</span>.logger.writeLog(<span class="string">"没有权限，读取失败"</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>测试方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testDocument_JDK</span><span class="params">()</span></span>&#123;</div><div class="line">    DocumentManager manager = <span class="keyword">new</span> DocumentManagerImpl();</div><div class="line">    Logger logger = <span class="keyword">new</span> Logger();</div><div class="line">    Privilege privilege = <span class="keyword">new</span> Privilege();</div><div class="line">    privilege.setKey(<span class="string">"root"</span>);</div><div class="line">    DocumentManagerProxy_JDK proxy_jdk = <span class="keyword">new</span> DocumentManagerProxy_JDK(logger,privilege,manager);</div><div class="line">    <span class="comment">//获取代理对象实例</span></div><div class="line">    DocumentManager manager_1 = (DocumentManager) Proxy.newProxyInstance(manager.getClass().getClassLoader(),</div><div class="line">            manager.getClass().getInterfaces(),proxy_jdk);</div><div class="line">    manager_1.readDocument();</div><div class="line">    manager_1.writeDocument();</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="动态代理的优缺点"><a href="#动态代理的优缺点" class="headerlink" title="动态代理的优缺点"></a>动态代理的优缺点</h2><p>优点：</p>
+<ol>
+<li>能完成对目标类的各种切入操作。</li>
+<li>实现了代替目标类完成工作。</li>
+<li>分离了目标类和切入类，将工作完全松耦合。</li>
+<li>用反射调用目标方法，目标方法变动无需修改代理方法。</li>
+<li>没有针对性，新增目标类只需在创建代理对象时传入目标类即可，不用新增代理类。</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>还是需要手动编写拦截器（代理），invoke方法中的逻辑有时还是需要修改。</li>
+</ol>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -190,57 +236,106 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://mannggo.github.io/Mannggo/2017/09/24/动态代理模式/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/Mannggo/2017/09/24/静态代理模式/" class="archive-article-date">
-  	<time datetime="2017-09-23T17:59:49.182Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-24</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/Mannggo/2017/09/24/静态代理模式/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">代理模式之静态代理</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/Mannggo/2017/09/24/静态代理模式/">代理模式之静态代理</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">静态代理,动态代理，代理模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -263,8 +358,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
