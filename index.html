@@ -42,7 +42,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="" class="profilepic">
-			<img src="img/102.jpg" class="js-avatar">
+			<img src="" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="">Xie zd</a></h1>
@@ -151,35 +151,48 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-动态代理模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/Mannggo/2017/09/24/hello-world/">Hello World</a>
+      <a class="article-title" href="/Mannggo/2017/09/24/动态代理模式/">代理模式之动态代理</a>
     </h1>
   
 
         
-        <a href="/Mannggo/2017/09/24/hello-world/" class="archive-article-date">
-  	<time datetime="2017-09-23T17:40:52.178Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-24</time>
+        <a href="/Mannggo/2017/09/24/动态代理模式/" class="archive-article-date">
+  	<time datetime="2017-09-23T17:59:49.184Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-24</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <h1 id="动态代理模式"><a href="#动态代理模式" class="headerlink" title="动态代理模式"></a>动态代理模式</h1><h2 id="什么是动态代理模式？"><a href="#什么是动态代理模式？" class="headerlink" title="什么是动态代理模式？"></a>什么是动态代理模式？</h2><p>动态代理模式就是对不同的目标类，能通过一个代理类来完成指定的切入操作。而不需要针对新增的目标类重新设计代理类。</p>
+<h2 id="Java如何实现动态代理？"><a href="#Java如何实现动态代理？" class="headerlink" title="Java如何实现动态代理？"></a>Java如何实现动态代理？</h2><p>还是拿静态代理所用的例子</p>
+<h3 id="JDK动态代理"><a href="#JDK动态代理" class="headerlink" title="JDK动态代理"></a>JDK动态代理</h3><p>这里只给出代理类和测试类的代码，其他代码与静态代理中的相同。<br>代理类：DocumentManagerProxy_JDK.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.proxypattern;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.lang.reflect.InvocationHandler;</div><div class="line"><span class="keyword">import</span> java.lang.reflect.Method;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * <span class="doctag">@author</span> zdxie</span></div><div class="line"><span class="comment"> * <span class="doctag">@Date</span> 上午 9:16 2017/9/6 </span></div><div class="line"><span class="comment"> * <span class="doctag">@Description</span> 实现InvocationHandler接口，编写invoke方法。所有工作都在invoke方法中完成。</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DocumentManagerProxy_JDK</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span></span>&#123;</div><div class="line">    <span class="keyword">private</span> Logger logger;</div><div class="line">    <span class="keyword">private</span> Privilege privilege;</div><div class="line">    <span class="keyword">private</span> Object target;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DocumentManagerProxy_JDK</span><span class="params">(Logger logger, Privilege privilege, Object target)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.logger = logger;</div><div class="line">        <span class="keyword">this</span>.privilege = privilege;</div><div class="line">        <span class="keyword">this</span>.target = target;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//所有工作都在invoke方法中完成</span></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.privilege.getKey().equals(<span class="string">"root"</span>))&#123;</div><div class="line">            <span class="keyword">this</span>.logger.writeLog(<span class="string">"权限验证通过!"</span>);</div><div class="line">            <span class="comment">//调用目标方法</span></div><div class="line">            method.invoke(<span class="keyword">this</span>.target,args);</div><div class="line">            <span class="keyword">this</span>.logger.writeLog(<span class="string">"操作成功!"</span>);</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            System.out.println(<span class="string">"Error:没有权限，操作失败！"</span>);</div><div class="line">            <span class="keyword">this</span>.logger.writeLog(<span class="string">"没有权限，操作失败"</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>测试方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testDocument_JDK</span><span class="params">()</span></span>&#123;</div><div class="line">        DocumentManager manager = <span class="keyword">new</span> DocumentManagerImpl();</div><div class="line">        Logger logger = <span class="keyword">new</span> Logger();</div><div class="line">        Privilege privilege = <span class="keyword">new</span> Privilege();</div><div class="line">        privilege.setKey(<span class="string">"root"</span>);</div><div class="line">        DocumentManagerProxy_JDK proxy_jdk = <span class="keyword">new</span> DocumentManagerProxy_JDK(logger,privilege,manager);</div><div class="line">        <span class="comment">//获取代理对象实例</span></div><div class="line">        DocumentManager manager_1 = (DocumentManager) Proxy.newProxyInstance(manager.getClass().getClassLoader(),</div><div class="line">                manager.getClass().getInterfaces(),proxy_jdk);</div><div class="line">        <span class="comment">//在代理对象调用方法的时候，进入了拦截器(代理对象)中的invoke方法</span></div><div class="line">        <span class="comment">//执行的内容就是拦截器中的invoke方法体的内容</span></div><div class="line">        manager_1.readDocument();</div><div class="line">        manager_1.writeDocument();</div><div class="line"></div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h3 id="cglib实现动态代理"><a href="#cglib实现动态代理" class="headerlink" title="cglib实现动态代理"></a>cglib实现动态代理</h3><p>代理类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.proxypattern;</div><div class="line"></div><div class="line"><span class="keyword">import</span> net.sf.cglib.proxy.Enhancer;</div><div class="line"><span class="keyword">import</span> net.sf.cglib.proxy.MethodInterceptor;</div><div class="line"><span class="keyword">import</span> net.sf.cglib.proxy.MethodProxy;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.lang.reflect.Method;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * <span class="doctag">@author</span> zdxie</span></div><div class="line"><span class="comment"> * <span class="doctag">@Date</span> 下午 2:45 2017/9/6 0006</span></div><div class="line"><span class="comment"> * <span class="doctag">@Description</span> 实现cglib提供的MethodInterceptor接口，重写intercept方法，</span></div><div class="line"><span class="comment"> *              并提供创建代理类的方法createProxy</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DocumentManagerProxy_cglib</span> <span class="keyword">implements</span> <span class="title">MethodInterceptor</span></span>&#123;</div><div class="line">    <span class="keyword">private</span> Object target;</div><div class="line">    <span class="keyword">private</span> Privilege privilege;</div><div class="line">    <span class="keyword">private</span> Logger logger;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DocumentManagerProxy_cglib</span><span class="params">(Object target, Privilege privilege, Logger logger)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.target = target;</div><div class="line">        <span class="keyword">this</span>.privilege = privilege;</div><div class="line">        <span class="keyword">this</span>.logger = logger;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">createProxy</span><span class="params">()</span></span>&#123;</div><div class="line">        Enhancer enhancer = <span class="keyword">new</span> Enhancer();</div><div class="line">        <span class="comment">//拦截器对象</span></div><div class="line">        enhancer.setCallback(<span class="keyword">this</span>);</div><div class="line">        <span class="comment">//设置代理类的父类为目标类</span></div><div class="line">        enhancer.setSuperclass(target.getClass());</div><div class="line">        <span class="keyword">return</span> enhancer.create();</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">intercept</span><span class="params">(Object o, Method method, Object[] objects, MethodProxy methodProxy)</span> <span class="keyword">throws</span> Throwable </span>&#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.privilege.getKey().equals(<span class="string">"root"</span>))&#123;</div><div class="line">            <span class="keyword">this</span>.logger.writeLog(<span class="string">"权限验证通过!"</span>);</div><div class="line">            method.invoke(<span class="keyword">this</span>.target,objects);</div><div class="line">            <span class="keyword">this</span>.logger.writeLog(<span class="string">"读取成功!"</span>);</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            System.out.println(<span class="string">"Error:没有权限，读取失败！"</span>);</div><div class="line">            <span class="keyword">this</span>.logger.writeLog(<span class="string">"没有权限，读取失败"</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>测试方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testDocument_JDK</span><span class="params">()</span></span>&#123;</div><div class="line">    DocumentManager manager = <span class="keyword">new</span> DocumentManagerImpl();</div><div class="line">    Logger logger = <span class="keyword">new</span> Logger();</div><div class="line">    Privilege privilege = <span class="keyword">new</span> Privilege();</div><div class="line">    privilege.setKey(<span class="string">"root"</span>);</div><div class="line">    DocumentManagerProxy_JDK proxy_jdk = <span class="keyword">new</span> DocumentManagerProxy_JDK(logger,privilege,manager);</div><div class="line">    <span class="comment">//获取代理对象实例</span></div><div class="line">    DocumentManager manager_1 = (DocumentManager) Proxy.newProxyInstance(manager.getClass().getClassLoader(),</div><div class="line">            manager.getClass().getInterfaces(),proxy_jdk);</div><div class="line">    manager_1.readDocument();</div><div class="line">    manager_1.writeDocument();</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="动态代理的优缺点"><a href="#动态代理的优缺点" class="headerlink" title="动态代理的优缺点"></a>动态代理的优缺点</h2><p>优点：</p>
+<ol>
+<li>能完成对目标类的各种切入操作。</li>
+<li>实现了代替目标类完成工作。</li>
+<li>分离了目标类和切入类，将工作完全松耦合。</li>
+<li>用反射调用目标方法，目标方法变动无需修改代理方法。</li>
+<li>没有针对性，新增目标类只需在创建代理对象时传入目标类即可，不用新增代理类。</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>还是需要手动编写拦截器（代理），invoke方法中的逻辑有时还是需要修改。</li>
+</ol>
 
       
 
@@ -188,11 +201,114 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">动态代理,代理模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/Mannggo/2017/09/24/hello-world/">展开全文 >></a>
+          <a class="article-more-a" href="/Mannggo/2017/09/24/动态代理模式/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-静态代理模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Mannggo/2017/09/24/静态代理模式/">代理模式之静态代理</a>
+    </h1>
+  
+
+        
+        <a href="/Mannggo/2017/09/24/静态代理模式/" class="archive-article-date">
+  	<time datetime="2017-09-23T17:59:49.182Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="静态代理模式"><a href="#静态代理模式" class="headerlink" title="静态代理模式"></a>静态代理模式</h2><h3 id="什么是静态代理？"><a href="#什么是静态代理？" class="headerlink" title="什么是静态代理？"></a>什么是静态代理？</h3><p>代理模式，顾名思义，就是找一个能代理自己工作的类来完成目标类的工作，这个代理类能在完成工作的同时对其进行验证和收尾工作。拿卖二手车做例子，当你的时间有限，可以找一个代理商帮你把车卖出去，代理商在帮你卖车的时候，能帮你完成诸如过户、注销等等手续，这就是代理商的作用。</p>
+<p>而静态代理，就是为目标类定制的代理，如果需要完成其他性质的工作，还需重新设计代理类来完成代理工作。</p>
+<h3 id="如何实现静态代理？"><a href="#如何实现静态代理？" class="headerlink" title="如何实现静态代理？"></a>如何实现静态代理？</h3><p>例子：<br>假设我们有一个文档管理类，可以通过他来完成对文档的读写操作，为了在读写之前验证权限，在读写过程中输出日志，我们为他设计一个静态代理类，代替他完成工作。</p>
+<p>权限类：privilege.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.proxypattern;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Privilege</span> </span>&#123;</div><div class="line">    <span class="comment">//key为“root”时即有权限</span></div><div class="line">    <span class="keyword">private</span> String key;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getKey</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> key;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setKey</span><span class="params">(String key)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.key = key;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>日志类：Logger.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.proxypattern;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Logger</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">writeLog</span><span class="params">(String log)</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"日志输出："</span> + log);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>目标类接口（文档管理接口）：DocumentManager.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.proxypattern;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">DocumentManager</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">readDocument</span><span class="params">()</span></span>;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">writeDocument</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>目标类：DocumentManagerImpl.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.proxypattern;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DocumentManagerImpl</span> <span class="keyword">implements</span> <span class="title">DocumentManager</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">readDocument</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"读取文档..."</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">writeDocument</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"写入文档..."</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>代理类：DocumentManagerProxy.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.proxypattern;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * 代理类，顾名思义就是代替DocumentManager来完成任务的。</span></div><div class="line"><span class="comment"> * 静态代理中代理类要实现目标类的接口，在构造函数中获取代理类需要用到的切入对象，如权限验证，日志。</span></div><div class="line"><span class="comment"> * 在实现的接口方法中加入权限验证等切入操作。</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DocumentManagerProxy</span> <span class="keyword">implements</span> <span class="title">DocumentManager</span></span>&#123;</div><div class="line">    <span class="keyword">private</span> DocumentManager documentManager;</div><div class="line">    <span class="keyword">private</span> Logger loggeer;</div><div class="line">    <span class="keyword">private</span> Privilege privilege;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DocumentManagerProxy</span><span class="params">(DocumentManager documentManager, Logger loggeer, Privilege privilege)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.documentManager = documentManager;</div><div class="line">        <span class="keyword">this</span>.loggeer = loggeer;</div><div class="line">        <span class="keyword">this</span>.privilege = privilege;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">readDocument</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.privilege.getKey().equals(<span class="string">"root"</span>))&#123;</div><div class="line">            <span class="keyword">this</span>.loggeer.writeLog(<span class="string">"权限验证通过!"</span>);</div><div class="line">            <span class="keyword">this</span>.documentManager.readDocument();</div><div class="line">            <span class="keyword">this</span>.loggeer.writeLog(<span class="string">"读取成功!"</span>);</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            System.out.println(<span class="string">"Error:没有权限，读取失败！"</span>);</div><div class="line">            <span class="keyword">this</span>.loggeer.writeLog(<span class="string">"没有权限，读取失败"</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">writeDocument</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.privilege.getKey().equals(<span class="string">"root"</span>))&#123;</div><div class="line">            <span class="keyword">this</span>.loggeer.writeLog(<span class="string">"权限验证通过!"</span>);</div><div class="line">            <span class="keyword">this</span>.documentManager.readDocument();</div><div class="line">            <span class="keyword">this</span>.loggeer.writeLog(<span class="string">"写入成功！"</span>);</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            System.out.println(<span class="string">"Error:没有权限，写入失败！"</span>);</div><div class="line">            <span class="keyword">this</span>.loggeer.writeLog(<span class="string">"没有权限，写入失败"</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>测试：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.proxypattern;</div><div class="line"></div><div class="line"><span class="keyword">import</span> org.junit.Test;</div><div class="line"><span class="keyword">import</span> sun.rmi.runtime.Log;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * <span class="doctag">@author</span> zdxie</span></div><div class="line"><span class="comment"> * <span class="doctag">@Date</span> 上午 8:28 2017/9/6 </span></div><div class="line"><span class="comment"> * <span class="doctag">@Description</span> 测试代理类</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestStaticProxy</span> </span>&#123;</div><div class="line">    <span class="meta">@Test</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testDocument</span><span class="params">()</span></span>&#123;</div><div class="line">        DocumentManager manager = <span class="keyword">new</span> DocumentManagerImpl();</div><div class="line">        Logger logger = <span class="keyword">new</span> Logger();</div><div class="line">        Privilege privilege = <span class="keyword">new</span> Privilege();</div><div class="line">        privilege.setKey(<span class="string">"key"</span>);</div><div class="line">        DocumentManagerProxy proxy = <span class="keyword">new</span> DocumentManagerProxy(manager,logger,privilege);</div><div class="line">        proxy.readDocument();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="静态代理模式的优缺点"><a href="#静态代理模式的优缺点" class="headerlink" title="静态代理模式的优缺点"></a>静态代理模式的优缺点</h3><p>优点：</p>
+<pre><code>1. 能完成对目标类的各种切入操作。
+2. 实现了代替目标类完成工作。
+</code></pre><p>缺点：<br>    1.目标接口如果方法有变动，对代理类也要做相应的变动。<br>    2.一个代理类只对应一个目标类，其他工作需要重新设计代理。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">静态代理,动态代理，代理模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/Mannggo/2017/09/24/静态代理模式/">展开全文 >></a>
         </p>
       
 
@@ -313,6 +429,14 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">动态代理,代理模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">静态代理,动态代理，代理模式</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
