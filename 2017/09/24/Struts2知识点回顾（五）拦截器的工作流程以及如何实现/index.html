@@ -6,6 +6,7 @@
   <title>Struts2知识点回顾（五）拦截器的工作流程以及如何实现 | 谢仲东’s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="工作流程 顾名思义，拦截器就是在请求前后对请求进行拦截，抽象的说法就是拦截器将Action抱在了自己怀里，别人想要访问就必须经过拦截器这道门，离开也要从这道门经过。抽象的图如下：  应用场景 在Web应用中，很多地方都用到了拦截器，例如权限验证，编码转换，参数类型转换（Struts2对参数的封装就是通过拦截器实现的），日志输出等。 拦截器栈 在Struts2中，拦截器像栈一样将action方法压在">
+<meta name="keywords" content="JavaEE框架">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Struts2知识点回顾（五）拦截器的工作流程以及如何实现">
 <meta property="og:url" content="https://mannggo.github.io/Mannggo/2017/09/24/Struts2知识点回顾（五）拦截器的工作流程以及如何实现/index.html">
@@ -13,7 +14,7 @@
 <meta property="og:description" content="工作流程 顾名思义，拦截器就是在请求前后对请求进行拦截，抽象的说法就是拦截器将Action抱在了自己怀里，别人想要访问就必须经过拦截器这道门，离开也要从这道门经过。抽象的图如下：  应用场景 在Web应用中，很多地方都用到了拦截器，例如权限验证，编码转换，参数类型转换（Struts2对参数的封装就是通过拦截器实现的），日志输出等。 拦截器栈 在Struts2中，拦截器像栈一样将action方法压在">
 <meta property="og:image" content="http://img.blog.csdn.net/20170730130847870?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjQ0NDg4OTk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="http://img.blog.csdn.net/20170730134934014?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjQ0NDg4OTk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2017-09-24T05:55:38.263Z">
+<meta property="og:updated_time" content="2017-09-24T06:35:46.623Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Struts2知识点回顾（五）拦截器的工作流程以及如何实现">
 <meta name="twitter:description" content="工作流程 顾名思义，拦截器就是在请求前后对请求进行拦截，抽象的说法就是拦截器将Action抱在了自己怀里，别人想要访问就必须经过拦截器这道门，离开也要从这道门经过。抽象的图如下：  应用场景 在Web应用中，很多地方都用到了拦截器，例如权限验证，编码转换，参数类型转换（Struts2对参数的封装就是通过拦截器实现的），日志输出等。 拦截器栈 在Struts2中，拦截器像栈一样将action方法压在">
@@ -130,9 +131,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://mannggo.github.io/Mannggo/2017/09/24/Struts2知识点回顾（五）拦截器的工作流程以及如何实现/" data-id="cj7yd9jt6001i3cj85q34rwg7" class="article-share-link">Share</a>
+      <a data-url="https://mannggo.github.io/Mannggo/2017/09/24/Struts2知识点回顾（五）拦截器的工作流程以及如何实现/" data-id="cj7ydjxw7001hj8j8apfk5upc" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Mannggo/tags/JavaEE框架/">JavaEE框架</a></li></ul>
+
     </footer>
   </div>
   
@@ -180,7 +183,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/Mannggo/tags/Java/" style="font-size: 20px;">Java</a> <a href="/Mannggo/tags/JavaEE/" style="font-size: 10px;">JavaEE</a> <a href="/Mannggo/tags/JavaEE框架/" style="font-size: 16px;">JavaEE框架</a> <a href="/Mannggo/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/Mannggo/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/Mannggo/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/Mannggo/tags/个人思考/" style="font-size: 10px;">个人思考</a> <a href="/Mannggo/tags/工具/" style="font-size: 12px;">工具</a> <a href="/Mannggo/tags/微服务架构/" style="font-size: 10px;">微服务架构</a> <a href="/Mannggo/tags/数据库/" style="font-size: 18px;">数据库</a> <a href="/Mannggo/tags/设计模式/" style="font-size: 14px;">设计模式</a>
+      <a href="/Mannggo/tags/Java/" style="font-size: 18px;">Java</a> <a href="/Mannggo/tags/JavaEE/" style="font-size: 10px;">JavaEE</a> <a href="/Mannggo/tags/JavaEE框架/" style="font-size: 20px;">JavaEE框架</a> <a href="/Mannggo/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/Mannggo/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/Mannggo/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/Mannggo/tags/个人思考/" style="font-size: 10px;">个人思考</a> <a href="/Mannggo/tags/工具/" style="font-size: 12px;">工具</a> <a href="/Mannggo/tags/微服务架构/" style="font-size: 10px;">微服务架构</a> <a href="/Mannggo/tags/数据库/" style="font-size: 16px;">数据库</a> <a href="/Mannggo/tags/设计模式/" style="font-size: 14px;">设计模式</a>
     </div>
   </div>
 
