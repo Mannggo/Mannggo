@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Struts2知识点回顾（二）Struts2项目准备和配置文件结构 | 谢仲东’s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="jar包准备第一步当然是准备jar包，然后copy到web项目的WebRoot/WEB-INF/lib下，maven项目除外。我是用的是IDE是Eclipse，所以默认的根目录是WebContent，无异。 主要jar包如下（并非全都必须，只是我要用要用到一些常用的包，例如日志log4j）： 配置核心过滤器Struts2的核心过滤器为StrutsPrepareAndExecuteFilter，我们">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Struts2知识点回顾（二）Struts2项目准备和配置文件结构">
+<meta property="og:url" content="https://mannggo.github.io/Mannggo/2017/09/24/Struts2知识点回顾（二）Struts2项目准备和配置文件结构/index.html">
+<meta property="og:site_name" content="谢仲东’s Blog">
+<meta property="og:description" content="jar包准备第一步当然是准备jar包，然后copy到web项目的WebRoot/WEB-INF/lib下，maven项目除外。我是用的是IDE是Eclipse，所以默认的根目录是WebContent，无异。 主要jar包如下（并非全都必须，只是我要用要用到一些常用的包，例如日志log4j）： 配置核心过滤器Struts2的核心过滤器为StrutsPrepareAndExecuteFilter，我们">
+<meta property="og:image" content="http://img.blog.csdn.net/20170724213052203?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjQ0NDg4OTk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2017-09-24T05:51:24.575Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Struts2知识点回顾（二）Struts2项目准备和配置文件结构">
+<meta name="twitter:description" content="jar包准备第一步当然是准备jar包，然后copy到web项目的WebRoot/WEB-INF/lib下，maven项目除外。我是用的是IDE是Eclipse，所以默认的根目录是WebContent，无异。 主要jar包如下（并非全都必须，只是我要用要用到一些常用的包，例如日志log4j）： 配置核心过滤器Struts2的核心过滤器为StrutsPrepareAndExecuteFilter，我们">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20170724213052203?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjQ0NDg4OTk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+  
+    <link rel="alternate" href="/atom.xml" title="谢仲东’s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/Mannggo/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/Mannggo/" id="logo">谢仲东’s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/Mannggo/">Home</a>
+        
+          <a class="main-nav-link" href="/Mannggo/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://mannggo.github.io/Mannggo"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Struts2知识点回顾（二）Struts2项目准备和配置文件结构" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Mannggo/2017/09/24/Struts2知识点回顾（二）Struts2项目准备和配置文件结构/" class="article-date">
+  <time datetime="2017-09-24T04:43:35.705Z" itemprop="datePublished">2017-09-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Struts2知识点回顾（二）Struts2项目准备和配置文件结构
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="jar包准备"><a href="#jar包准备" class="headerlink" title="jar包准备"></a>jar包准备</h2><p>第一步当然是准备jar包，然后copy到web项目的WebRoot/WEB-INF/lib下，maven项目除外。我是用的是IDE是Eclipse，所以默认的根目录是WebContent，无异。</p>
+<p>主要jar包如下（并非全都必须，只是我要用要用到一些常用的包，例如日志log4j）：<br><img src="http://img.blog.csdn.net/20170724213052203?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjQ0NDg4OTk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<h2 id="配置核心过滤器"><a href="#配置核心过滤器" class="headerlink" title="配置核心过滤器"></a>配置核心过滤器</h2><p>Struts2的核心过滤器为<strong>StrutsPrepareAndExecuteFilter</strong>，我们只要在web.xml中配置一下这个过滤器就好了。过滤器全名为：org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span><span class="meta">?&gt;</span></span></div><div class="line"><span class="tag">&lt;<span class="name">web-app</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="attr">xmlns</span>=<span class="string">"http://java.sun.com/xml/ns/javaee"</span> <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"</span> <span class="attr">id</span>=<span class="string">"WebApp_ID"</span> <span class="attr">version</span>=<span class="string">"3.0"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">display-name</span>&gt;</span>S2Review<span class="tag">&lt;/<span class="name">display-name</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">welcome-file-list</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">welcome-file</span>&gt;</span>index.jsp<span class="tag">&lt;/<span class="name">welcome-file</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">welcome-file-list</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">filter</span>&gt;</span></div><div class="line">  	<span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>struts2<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></div><div class="line">  	<span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">filter</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></div><div class="line">  	<span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>struts2<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></div><div class="line">  	<span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">web-app</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="核心配置文件-示例"><a href="#核心配置文件-示例" class="headerlink" title="核心配置文件(示例)"></a>核心配置文件(示例)</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span> <span class="meta">?&gt;</span></span></div><div class="line"><span class="meta">&lt;!DOCTYPE struts PUBLIC</span></div><div class="line"><span class="meta">    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"</span></div><div class="line"><span class="meta">    "http://struts.apache.org/dtds/struts-2.0.dtd"&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">struts</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- 引入其他配置文件 --&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">include</span> <span class="attr">file</span>=<span class="string">"strutsconfig/global.xml"</span>/&gt;</span></div><div class="line">	<span class="comment">&lt;!-- 设置struts2属性(此处为开启开发模式，spring整合) --&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">constant</span> <span class="attr">name</span>=<span class="string">"struts.devMode"</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">constant</span> <span class="attr">name</span>=<span class="string">"struts.objectFactory"</span> <span class="attr">value</span>=<span class="string">"spring"</span> /&gt;</span></div><div class="line">	</div><div class="line">	<span class="comment">&lt;!-- 分模块开发 --&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"member"</span> <span class="attr">namespace</span>=<span class="string">"/member"</span> <span class="attr">extends</span>=<span class="string">"dgcrm-global"</span>&gt;</span></div><div class="line">		<span class="comment">&lt;!-- 全局结果视图 --&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">global-results</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"error"</span>&gt;</span>/error.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"exception"</span>&gt;</span>/exception/exception.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"err"</span>&gt;</span>/exception/error.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">global-results</span>&gt;</span></div><div class="line">		<span class="comment">&lt;!-- 配置action和对应的action类 因为此处与spring整合，所以class写beanname--&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"memberList"</span> <span class="attr">method</span>=<span class="string">"memberList"</span></span></div><div class="line"><span class="tag">			<span class="attr">class</span>=<span class="string">"memberAction"</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">result</span>&gt;</span>../jsp/allBusi/member/memberListData.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">action</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"getMemberJsp"</span>&gt;</span></div><div class="line">			<span class="comment">&lt;!-- 只配置一个name默认为SUCCESS --&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">result</span>&gt;</span>../jsp/allBusi/member/memberList.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">action</span>&gt;</span></div><div class="line">		<span class="comment">&lt;!-- 转发到另外一个aciton </span></div><div class="line"><span class="comment">			 	dispatcher:默认结果类型。请求转发到一个页面。</span></div><div class="line"><span class="comment">				redirect：请求重定向到一个页面。</span></div><div class="line"><span class="comment">				chain:请求转发到另一个动作。</span></div><div class="line"><span class="comment">				redirectAction：重定向到另外一个动作</span></div><div class="line"><span class="comment">				stream：下载用的</span></div><div class="line"><span class="comment">				plainText：以纯文本的形式展现内容</span></div><div class="line"><span class="comment"></span></div><div class="line"><span class="comment">		--&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"ch"</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">result</span> <span class="attr">type</span>=<span class="string">"chain"</span>&gt;</span>getMemberJsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">acction</span>&gt;</span></div><div class="line">		</div><div class="line">	<span class="tag">&lt;/<span class="name">package</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">struts</span>&gt;</span></div></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://mannggo.github.io/Mannggo/2017/09/24/Struts2知识点回顾（二）Struts2项目准备和配置文件结构/" data-id="cj7yd9jt2001g3cj8kqq4x15b" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/Mannggo/2017/09/24/Struts2知识点回顾（三）Action要怎么写？/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Struts2知识点回顾（三）Action要怎么写？
+        
+      </div>
+    </a>
+  
+  
+    <a href="/Mannggo/2017/09/24/Struts2知识点回顾（一）Struts工作流程/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Struts2知识点回顾（一）Struts工作流程</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/JavaEE/">JavaEE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/JavaEE框架/">JavaEE框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/jQuery/">jQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/个人思考/">个人思考</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/工具/">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/微服务架构/">微服务架构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/设计模式/">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/Mannggo/tags/Java/" style="font-size: 20px;">Java</a> <a href="/Mannggo/tags/JavaEE/" style="font-size: 10px;">JavaEE</a> <a href="/Mannggo/tags/JavaEE框架/" style="font-size: 16px;">JavaEE框架</a> <a href="/Mannggo/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/Mannggo/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/Mannggo/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/Mannggo/tags/个人思考/" style="font-size: 10px;">个人思考</a> <a href="/Mannggo/tags/工具/" style="font-size: 12px;">工具</a> <a href="/Mannggo/tags/微服务架构/" style="font-size: 10px;">微服务架构</a> <a href="/Mannggo/tags/数据库/" style="font-size: 18px;">数据库</a> <a href="/Mannggo/tags/设计模式/" style="font-size: 14px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/Mannggo/archives/2017/09/">September 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/Mannggo/2017/09/24/用构建者的角度去学习一门技术/">用构建者的角度去学习一门技术</a>
+          </li>
+        
+          <li>
+            <a href="/Mannggo/2017/09/24/Java集合框架大纲/">Java集合框架大纲</a>
+          </li>
+        
+          <li>
+            <a href="/Mannggo/2017/09/24/Spring回顾（二）注解实现IoC和DI/">Spring回顾（二）注解实现IoC和DI</a>
+          </li>
+        
+          <li>
+            <a href="/Mannggo/2017/09/24/Spring回顾（一）IoC & DI/">Spring回顾（一）IoC &amp; DI</a>
+          </li>
+        
+          <li>
+            <a href="/Mannggo/2017/09/24/Struts2知识点回顾（总结）学习思维导图/">Struts2知识点回顾（总结）学习思维导图</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Xie zd<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/Mannggo/" class="mobile-nav-link">Home</a>
+  
+    <a href="/Mannggo/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/Mannggo/fancybox/jquery.fancybox.css">
+  <script src="/Mannggo/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/Mannggo/js/script.js"></script>
+
+  </div>
+</body>
+</html>

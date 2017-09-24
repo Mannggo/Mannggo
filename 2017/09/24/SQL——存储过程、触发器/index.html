@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>SQL——存储过程、触发器 | 谢仲东’s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="存储过程概念用于编写能够完成某项工作的一组SQL语句集合，其中包括一些T-SQL(Trasaction-SQL)语句来接收数据、操作数据、逻辑判断，存储过程经过编译后，存储在数据库中，可以直接调用。存储过程可编程可修改，多次执行不会重复编译，所以提高了查询速度。本篇主要讲述MySQL中创建和调用存储过程。 创建和调用格式12345678910111213141516/*DELIMITER声明分隔符">
+<meta name="keywords" content="数据库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL——存储过程、触发器">
+<meta property="og:url" content="https://mannggo.github.io/Mannggo/2017/09/24/SQL——存储过程、触发器/index.html">
+<meta property="og:site_name" content="谢仲东’s Blog">
+<meta property="og:description" content="存储过程概念用于编写能够完成某项工作的一组SQL语句集合，其中包括一些T-SQL(Trasaction-SQL)语句来接收数据、操作数据、逻辑判断，存储过程经过编译后，存储在数据库中，可以直接调用。存储过程可编程可修改，多次执行不会重复编译，所以提高了查询速度。本篇主要讲述MySQL中创建和调用存储过程。 创建和调用格式12345678910111213141516/*DELIMITER声明分隔符">
+<meta property="og:image" content="http://img.blog.csdn.net/20170924122046204?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjQ0NDg4OTk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170924122054872?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjQ0NDg4OTk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2017-09-24T06:29:23.130Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SQL——存储过程、触发器">
+<meta name="twitter:description" content="存储过程概念用于编写能够完成某项工作的一组SQL语句集合，其中包括一些T-SQL(Trasaction-SQL)语句来接收数据、操作数据、逻辑判断，存储过程经过编译后，存储在数据库中，可以直接调用。存储过程可编程可修改，多次执行不会重复编译，所以提高了查询速度。本篇主要讲述MySQL中创建和调用存储过程。 创建和调用格式12345678910111213141516/*DELIMITER声明分隔符">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20170924122046204?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjQ0NDg4OTk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+  
+    <link rel="alternate" href="/atom.xml" title="谢仲东’s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/Mannggo/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/Mannggo/" id="logo">谢仲东’s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/Mannggo/">Home</a>
+        
+          <a class="main-nav-link" href="/Mannggo/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://mannggo.github.io/Mannggo"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-SQL——存储过程、触发器" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Mannggo/2017/09/24/SQL——存储过程、触发器/" class="article-date">
+  <time datetime="2017-09-24T04:15:50.942Z" itemprop="datePublished">2017-09-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      SQL——存储过程、触发器
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>用于编写能够完成某项工作的一组SQL语句集合，其中包括一些T-SQL(Trasaction-SQL)语句来接收数据、操作数据、逻辑判断，存储过程经过编译后，存储在数据库中，可以直接调用。存储过程可编程可修改，多次执行不会重复编译，所以提高了查询速度。本篇主要讲述MySQL中创建和调用存储过程。</p>
+<h3 id="创建和调用格式"><a href="#创建和调用格式" class="headerlink" title="创建和调用格式"></a>创建和调用格式</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*DELIMITER声明分隔符为 // */</span></div><div class="line">DELIMITER //</div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> a(<span class="keyword">IN</span> b <span class="built_in">char</span>(<span class="number">20</span>))</div><div class="line"><span class="keyword">BEGIN</span></div><div class="line">	</div><div class="line">	<span class="keyword">SELECT</span> b;</div><div class="line"><span class="keyword">END</span>//</div><div class="line"><span class="comment">/*分隔符还原*/</span></div><div class="line">DELIMITER ;</div><div class="line"></div><div class="line"><span class="comment">/*调用存储过程*/</span></div><div class="line"><span class="keyword">SET</span> @<span class="keyword">str</span> = <span class="string">'helloworld'</span>;</div><div class="line"><span class="keyword">CALL</span> a(@<span class="keyword">str</span>);</div><div class="line"></div><div class="line"><span class="comment">/*删除存储过程*/</span></div><div class="line"><span class="keyword">DROP</span> <span class="keyword">PROCEDURE</span> a;</div></pre></td></tr></table></figure>
+<p>（1）  修改分隔符，因为原来的语句分隔符为”；”,所以MySQL会将存储过程当做SQL语句执行，这样存储过程中的SQL语句会在创建时就执行，报错。改成“//”后就不会执行以”;” 结尾的SQL语句，在创建完存储过程之后要将分隔符重新修改成”;”。<br>（2）存储过程的程序体包含在BEGIN…END中。<br>（3）通过call关键字调用存储过程，在调用时如果有参数列表，要传入参数。</p>
+<h2 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h2><h3 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h3><p>触发器是关联一个表的数据对象，他不用手动调用。当其关联表触发了触发器声明的特殊操作时，会自动激活触发器，执行触发器中的SQL语句。触发器是一类特殊的存储过程，当有操作影响到关联表时，触发器自动执行。</p>
+<h3 id="触发器的创建"><a href="#触发器的创建" class="headerlink" title="触发器的创建"></a>触发器的创建</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">（1）创建a表</div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> a</div><div class="line">(</div><div class="line">	info <span class="built_in">DATE</span></div><div class="line">);</div><div class="line"></div><div class="line">（2）创建b表</div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> b</div><div class="line">(</div><div class="line">	<span class="keyword">id</span> <span class="built_in">INT</span> AUTO_INCREMENT,</div><div class="line">	<span class="keyword">NAME</span> <span class="built_in">VARCHAR</span>(<span class="number">40</span>),</div><div class="line">	PRIMARY <span class="keyword">KEY</span> (<span class="keyword">id</span>)</div><div class="line">);</div><div class="line"></div><div class="line">（3）创建触发器关联b表，使每次b表有数据插入时，都在a表中插入插入数据的时间。</div><div class="line">DELIMITER //</div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TRIGGER</span> mytrigger</div><div class="line"><span class="keyword">AFTER</span> <span class="keyword">INSERT</span></div><div class="line"><span class="keyword">ON</span> b</div><div class="line"><span class="keyword">FOR</span> <span class="keyword">EACH</span> <span class="keyword">ROW</span></div><div class="line"><span class="keyword">BEGIN</span></div><div class="line">	<span class="keyword">INSERT</span> <span class="keyword">INTO</span> a(info) <span class="keyword">VALUE</span>(<span class="keyword">NOW</span>());</div><div class="line"><span class="keyword">END</span>//</div><div class="line">DELIMITER ;</div></pre></td></tr></table></figure>
+<p>（4）测试结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">INSERT INTO b VALUES(2,&apos;老王&apos;)</div></pre></td></tr></table></figure>
+<p>表b:<br><img src="http://img.blog.csdn.net/20170924122046204?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjQ0NDg4OTk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>表a:<br><img src="http://img.blog.csdn.net/20170924122054872?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjQ0NDg4OTk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://mannggo.github.io/Mannggo/2017/09/24/SQL——存储过程、触发器/" data-id="cj7yd9js3000x3cj80co9l83s" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Mannggo/tags/数据库/">数据库</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/Mannggo/2017/09/24/数据库外连接（左、右、全）、内连接/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          数据库外连接（左、右、全）、内连接
+        
+      </div>
+    </a>
+  
+  
+    <a href="/Mannggo/2017/09/24/SQL——视图、序列、索引、同义词/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">SQL——视图、序列、索引、同义词</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/JavaEE/">JavaEE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/JavaEE框架/">JavaEE框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/jQuery/">jQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/个人思考/">个人思考</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/工具/">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/微服务架构/">微服务架构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/设计模式/">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/Mannggo/tags/Java/" style="font-size: 20px;">Java</a> <a href="/Mannggo/tags/JavaEE/" style="font-size: 10px;">JavaEE</a> <a href="/Mannggo/tags/JavaEE框架/" style="font-size: 16px;">JavaEE框架</a> <a href="/Mannggo/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/Mannggo/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/Mannggo/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/Mannggo/tags/个人思考/" style="font-size: 10px;">个人思考</a> <a href="/Mannggo/tags/工具/" style="font-size: 12px;">工具</a> <a href="/Mannggo/tags/微服务架构/" style="font-size: 10px;">微服务架构</a> <a href="/Mannggo/tags/数据库/" style="font-size: 18px;">数据库</a> <a href="/Mannggo/tags/设计模式/" style="font-size: 14px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/Mannggo/archives/2017/09/">September 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/Mannggo/2017/09/24/用构建者的角度去学习一门技术/">用构建者的角度去学习一门技术</a>
+          </li>
+        
+          <li>
+            <a href="/Mannggo/2017/09/24/Java集合框架大纲/">Java集合框架大纲</a>
+          </li>
+        
+          <li>
+            <a href="/Mannggo/2017/09/24/Spring回顾（二）注解实现IoC和DI/">Spring回顾（二）注解实现IoC和DI</a>
+          </li>
+        
+          <li>
+            <a href="/Mannggo/2017/09/24/Spring回顾（一）IoC & DI/">Spring回顾（一）IoC &amp; DI</a>
+          </li>
+        
+          <li>
+            <a href="/Mannggo/2017/09/24/Struts2知识点回顾（总结）学习思维导图/">Struts2知识点回顾（总结）学习思维导图</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Xie zd<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/Mannggo/" class="mobile-nav-link">Home</a>
+  
+    <a href="/Mannggo/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/Mannggo/fancybox/jquery.fancybox.css">
+  <script src="/Mannggo/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/Mannggo/js/script.js"></script>
+
+  </div>
+</body>
+</html>

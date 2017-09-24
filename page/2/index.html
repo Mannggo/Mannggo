@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>谢仲东’s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="谢仲东’s Blog">
+<meta property="og:url" content="https://mannggo.github.io/Mannggo/page/2/index.html">
+<meta property="og:site_name" content="谢仲东’s Blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="谢仲东’s Blog">
+  
+    <link rel="alternate" href="/atom.xml" title="谢仲东’s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/Mannggo/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/Mannggo/" id="logo">谢仲东’s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/Mannggo/">Home</a>
+        
+          <a class="main-nav-link" href="/Mannggo/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://mannggo.github.io/Mannggo"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-Spring回顾（一）IoC &amp; DI" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Mannggo/2017/09/24/Spring回顾（一）IoC & DI/" class="article-date">
+  <time datetime="2017-09-24T04:51:14.318Z" itemprop="datePublished">2017-09-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Mannggo/2017/09/24/Spring回顾（一）IoC & DI/">Spring回顾（一）IoC &amp; DI</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="什么是IoC？何为DI？"><a href="#什么是IoC？何为DI？" class="headerlink" title="什么是IoC？何为DI？"></a>什么是IoC？何为DI？</h2><blockquote>
+<p>IoC是Sprnig框架实现的一种代替程序员，管理Java类的模式。IoC全称为<em>Inversion of Control</em>,即<strong>控制反转</strong>。在Spring项目中，将Java类的控制权交给了Spring的IoC容器。类与类之间的泛化关系、依赖关系都能通过Spring的配置来实现，而不需要手动编写。</p>
+<p>DI,全称为<em>Dependency Injection</em>,即<strong>依赖注入</strong>。在Spring通过配置文件配置了依赖关系之后，可以通过多种方式对对象进行注入，比如说Service实现类中的方法需要依赖dao实现类，我们就能通过Spring配置文件写好注入配置，在使用时，我们只需要定义好dao接口，而不需要去获取它的实例，由Spring为我们注入。</p>
+</blockquote>
+<hr>
+<h2 id="能通过Spring的IoC容器和DI做什么？"><a href="#能通过Spring的IoC容器和DI做什么？" class="headerlink" title="能通过Spring的IoC容器和DI做什么？"></a>能通过Spring的IoC容器和DI做什么？</h2><h3 id="1-IoC（控制反转）"><a href="#1-IoC（控制反转）" class="headerlink" title="1. IoC（控制反转）"></a>1. IoC（控制反转）</h3><p>控制反转，能让spring容器为我们创建对象。简单来说，我们只需要准备好<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Object object</div></pre></td></tr></table></figure></p>
+<p>Spring能帮我们实现余下的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">new Object()</div></pre></td></tr></table></figure></p>
+<p>部分。在Spring中，每个被放入容器的类被成为bean，ApplicationContext代表了IoC容器，我们可以通过这个类来读取配置文件，根据配置文件实例化bean。下面看看如何通过配置实现控制反转</p>
+<h4 id="1-1-配置文件"><a href="#1-1-配置文件" class="headerlink" title="1.1 配置文件"></a>1.1 配置文件</h4><p>配置文件一般放在class目录下，即开发中的src目录。配置文件的主要结构如下:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span><span class="meta">?&gt;</span></span></div><div class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></div><div class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></div><div class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans</span></span></div><div class="line"><span class="tag"><span class="string">           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"</span>&gt;</span></div><div class="line">	<span class="comment">&lt;!-- </span></div><div class="line"><span class="comment">		  beans  存放了很多个类</span></div><div class="line"><span class="comment">		  把一个类放入到spring容器中，该类就是bean</span></div><div class="line"><span class="comment">	 --&gt;</span></div><div class="line">	 <span class="comment">&lt;!-- </span></div><div class="line"><span class="comment">	 	  一个bean就是描述一个类</span></div><div class="line"><span class="comment">	 	  id就是标示符</span></div><div class="line"><span class="comment">	 	  命名规范：类的第一个字母变成小写，其他的字母保持不变</span></div><div class="line"><span class="comment">	 	  class为类的全名</span></div><div class="line"><span class="comment">	  --&gt;</span></div><div class="line">	 <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"helloWorld"</span> <span class="attr">class</span>=<span class="string">"com.spring.ioc.HelloWorld"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h4 id="1-2-ApplicationContext-的使用"><a href="#1-2-ApplicationContext-的使用" class="headerlink" title="1.2 ApplicationContext 的使用"></a>1.2 ApplicationContext 的使用</h4><p>ApplicationContext在Spring中代表一个IoC容器，ApplicationContext只是一个接口，在这里我用ClassPathXmlApplicationContext这个实现类来直接获取配置文件。其中在容器中对象的创建又有三种方法：根据默认构造方法创建、静态工厂方法创建、实例工厂方法创建</p>
+<h5 id="①默认构造方法创建"><a href="#①默认构造方法创建" class="headerlink" title="①默认构造方法创建"></a>①<strong>默认构造方法创建</strong></h5><p>springIoc容器默认情况下会根据bean的构造函数来实例化对象。所以在bean的配置中我们可以添加参数，参数可以是变量也可以是另一个bean的引用，如果是bean的引用，则使用ref=”bean_id”来关联。<br>配置方式applicationContext.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"helloWorld"</span> <span class="attr">class</span>=<span class="string">"com.spring.ioc.HelloWorld"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>HelloWorld.java<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.spring.ioc;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">HelloWorld</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"create a HelloWorld!"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">hello</span><span class="params">(String name)</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"Hello,"</span> + name);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>IoCTest.java<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.spring.ioc;</div><div class="line"></div><div class="line"><span class="keyword">import</span> org.junit.Test;</div><div class="line"><span class="keyword">import</span> org.springframework.context.ApplicationContext;</div><div class="line"><span class="keyword">import</span> org.springframework.context.support.ClassPathXmlApplicationContext;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IoCTest</span> </span>&#123;</div><div class="line">    <span class="meta">@Test</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testIoC</span><span class="params">()</span></span>&#123;</div><div class="line">	    <span class="comment">//读取配置文件</span></div><div class="line">        ApplicationContext context = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"applicationContext.xml"</span>);</div><div class="line">        <span class="comment">//通过getBean方法得到</span></div><div class="line">        HelloWorld helloWorld = (HelloWorld) context.getBean(<span class="string">"helloWorld"</span>);</div><div class="line">        helloWorld.hello(<span class="string">"Cindy"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h5 id="②静态工厂方法创建对象"><a href="#②静态工厂方法创建对象" class="headerlink" title="②静态工厂方法创建对象"></a>②<strong>静态工厂方法创建对象</strong></h5><p>可以在配置bean的时候可以配置使用静态工厂来实例化对象。Spring容器会在内部调用静态工厂的实例化方法来实例化对象。<br>配置方式：applicationContext.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"helloWorld"</span> <span class="attr">class</span>=<span class="string">"com.spring.ioc.HelloWorldFactory"</span></span></div><div class="line"><span class="tag">           <span class="attr">factory-method</span>=<span class="string">"getInstance"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>静态工厂HelloWorldFactory.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.spring.ioc;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorldFactory</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> HelloWorld <span class="title">getInstance</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> HelloWorld();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="③实例工厂创建对象"><a href="#③实例工厂创建对象" class="headerlink" title="③实例工厂创建对象"></a>③<strong>实例工厂创建对象</strong></h5><p>使用实例工厂方法实例化对象，在定义bean的时候使用factory-bean属性和factory-method属性，来指定实例工厂的实例方法。与静态工厂方法不同，这里是先实例化了一个工厂类，然后调用了实例化工厂方法，而静态工厂方法不实例化工厂类，直接调用其静态实例化方法。<br>配置方式：applicationContext.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"helloWorldFactory"</span> <span class="attr">class</span>=<span class="string">"com.spring.ioc.HelloWorldFactory2"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"helloWorld"</span> <span class="attr">factory-method</span>=<span class="string">"getInstance"</span> <span class="attr">factory-bean</span>=<span class="string">"helloWorldFactory"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>实例工厂HelloWorldFactory2.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.spring.ioc;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorldFactory2</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">HelloWorldFactory2</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"create a HelloWorldFactory"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> HelloWorld <span class="title">getInstance</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> HelloWorld();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="1-3-什么时候实例化对象？"><a href="#1-3-什么时候实例化对象？" class="headerlink" title="1.3 什么时候实例化对象？"></a>1.3 什么时候实例化对象？</h4><p>①加载Spring容器，加载过程中，调用bean的构造函数为bean创建对象。<br>②将bean的lazy-init属性，设置为true（默认为false），设置延迟加载，spring容器加载时不实例化，在getBean()的时候才实例化。<br>一般情况下使用第一种方式，因为在启动过程中就能检测出spring配置文件中包含的错误，更加安全。第二种在启动过程中发现不了配置文件错误。如果要加载的bean实在太消耗性能，再考虑使用第二种方法。</p>
+<h4 id="1-4-bean的单例模式和多例模式"><a href="#1-4-bean的单例模式和多例模式" class="headerlink" title="1.4 bean的单例模式和多例模式"></a>1.4 bean的单例模式和多例模式</h4><p>在配置bean的过程中，可以为其指定是否使用单例模式实例化对象，默认为单例模式，即只实例化一次，多次使用。设置的方法为：<br>① 多例模式：scope=prototype</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"helloWorld"</span> <span class="attr">class</span>=<span class="string">"com.spring.ioc.HelloWorld"</span> <span class="attr">scope</span>=<span class="string">"prototype"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>②单例模式（defalut）: scope=singleton</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"helloWorld"</span> <span class="attr">class</span>=<span class="string">"com.spring.ioc.HelloWorld"</span> <span class="attr">scope</span>=<span class="string">"singleton"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
+<h4 id="1-5-bean的init方法，destory方法"><a href="#1-5-bean的init方法，destory方法" class="headerlink" title="1.5 bean的init方法，destory方法"></a>1.5 bean的init方法，destory方法</h4><p>在配置bean的时候，可以为其指定init()方法和destory()方法，分别在实例化和销毁的时候执行。其中在容器关闭时，bean销毁。<br>配置了之后整个流程可表示为：构造方法(创建对象)-&gt;init方法-&gt;其他方法-&gt;destory方法</p>
+<p><strong><em>*当scope=prototype的时候，spring容器不会执行destory方法</em></strong></p>
+<p>配制方法 applicationContext.xml ：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"helloWorld"</span> <span class="attr">class</span>=<span class="string">"com.spring.ioc.HelloWorld"</span> <span class="attr">init-method</span>=<span class="string">"init"</span> <span class="attr">destroy-method</span>=<span class="string">"destroy"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>HelloWorld.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.spring.ioc;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">HelloWorld</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"create a HelloWorld!"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">hello</span><span class="params">(String name)</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"Hello,"</span> + name);</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"init HelloWorld"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"destroy HelloWorld"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="1-6-bean继承关系"><a href="#1-6-bean继承关系" class="headerlink" title="1.6 bean继承关系"></a>1.6 bean继承关系</h4><p>在spring容器中使用parent属性指定父类，实现继承。例子：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.spring.xml.extend;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">walk</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"Animal walking"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.spring.xml.extend;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Dog</span> <span class="keyword">extends</span> <span class="title">Animal</span> </span>&#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>配置：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"com.spring.xml.extend.Animal"</span> <span class="attr">id</span>=<span class="string">"animal"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"com.spring.xml.extend.Dog"</span> <span class="attr">id</span>=<span class="string">"dog"</span> <span class="attr">parent</span>=<span class="string">"animal"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="2-DI（依赖注入）"><a href="#2-DI（依赖注入）" class="headerlink" title="2. DI（依赖注入）"></a>2. DI（依赖注入）</h3><h4 id="2-1-setter方式注入"><a href="#2-1-setter方式注入" class="headerlink" title="2.1 setter方式注入"></a>2.1 setter方式注入</h4><p>配置bean的时候，我们可以在配置文件中指定实例化时，要注入的属性值。这些值可以是基本数据类型、引用类型、集合类型、或者Propertie，只要在bean的类定义中提供setter方法就能通过配置注入，配置的方法如下：<br>applicationContext.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"person"</span> <span class="attr">class</span>=<span class="string">"com.spring.di.Person"</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!--</span></div><div class="line"><span class="comment">        property描述的就是bean中的属性</span></div><div class="line"><span class="comment">          name属性就是描述属性的名称</span></div><div class="line"><span class="comment">          value就是值   如果是基本属性(String)，就用value赋值</span></div><div class="line"><span class="comment">          ref  如果是引用类型，用ref赋值</span></div><div class="line"><span class="comment">     --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"pid"</span> <span class="attr">value</span>=<span class="string">"1"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">"Cindy"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- 注入bean --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"student"</span> <span class="attr">ref</span>=<span class="string">"student"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"lists"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">list</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">value</span>&gt;</span>list1<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">value</span>&gt;</span>list2<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line">            <span class="comment">&lt;!--</span></div><div class="line"><span class="comment">                list中存放一个student对象</span></div><div class="line"><span class="comment">             --&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">ref</span> <span class="attr">bean</span>=<span class="string">"student"</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">list</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"objects"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">list</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">value</span>&gt;</span>obj1<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">ref</span> <span class="attr">bean</span>=<span class="string">"student"</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">list</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"sets"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">set</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">value</span>&gt;</span>set1<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">ref</span> <span class="attr">bean</span>=<span class="string">"student"</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">set</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"map"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">map</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">"m1"</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>m1<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">entry</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">"m2"</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">ref</span> <span class="attr">bean</span>=<span class="string">"student"</span>/&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">entry</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">map</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"properties"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">props</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"p1"</span>&gt;</span>p1<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"p2"</span>&gt;</span>p2<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">props</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"student"</span> <span class="attr">class</span>=<span class="string">"com.spring.di.Student"</span></span></div><div class="line"><span class="tag">      <span class="attr">scope</span>=<span class="string">"prototype"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>Student.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.spring.di;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"student"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">say</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"student"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Person.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> Long pid;</div><div class="line">    <span class="keyword">private</span> String name;</div><div class="line">    <span class="keyword">private</span> Student student;</div><div class="line">    <span class="keyword">private</span> List lists;</div><div class="line">    <span class="keyword">private</span> Set sets;</div><div class="line">    <span class="keyword">private</span> Map map;</div><div class="line">    <span class="keyword">private</span> Object[] objects;</div><div class="line">    <span class="keyword">private</span> Properties properties;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"person"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//...</span></div><div class="line">    <span class="comment">//省略setter方法</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="2-2-Constructor-注入"><a href="#2-2-Constructor-注入" class="headerlink" title="2.2 Constructor 注入"></a>2.2 Constructor 注入</h4><p>除了调用setter方法注入，还能通过类的构造器来注入参数，同样是从配置文件中对bean进行配置。首先在类中定义好构造器方法，然后在配置文件中设置参数。<br>配置方法：<br>applicationContext.xml</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;bean id=<span class="string">"person1"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"com.spring.di.Person1"</span>&gt;</div><div class="line">    &lt;constructor-arg value="Cindy" index="0"&gt;&lt;/constructor-arg&gt;</div><div class="line">    &lt;constructor-arg ref="student" index="1"&gt;&lt;/constructor-arg&gt;</div><div class="line">&lt;/bean&gt;</div></pre></td></tr></table></figure>
+<p>Person1.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.spring.di;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person1</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> String name;</div><div class="line">    <span class="keyword">private</span> Student student;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person1</span><span class="params">(String name, Student student)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.name = name;</div><div class="line">        <span class="keyword">this</span>.student = student;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="IoC-和-DI-带来的好处（优势）"><a href="#IoC-和-DI-带来的好处（优势）" class="headerlink" title="IoC 和 DI 带来的好处（优势）"></a>IoC 和 DI 带来的好处（优势）</h2><p>让客户端实现<strong>完全面向接口编程</strong>，在编写客户端的时候，不用关心实现类为什么具体类型，只用接口类型来完成工作，接口需要具体为何种类型的实例，由配置文件决定。举个例子，在一个struts2的aciton中，用接口定义了一个service，而这个service通过spring注入，那么开发action的人员就不需要管service具体是如何实现的，把编写service的工作分离出去，方便团队开发，避免编写过程中的冲突。</p>
+<h2 id="Spring是如何实现IoC和DI的"><a href="#Spring是如何实现IoC和DI的" class="headerlink" title="Spring是如何实现IoC和DI的"></a>Spring是如何实现IoC和DI的</h2><p>了解Spring框架底层是如何实现控制反转和依赖注入，需要深入研究源码。因为我还没有深入研究过，只知道大概是使用了Java的反射机制，来操作类。有待自己深入研究。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://mannggo.github.io/Mannggo/2017/09/24/Spring回顾（一）IoC & DI/" data-id="cj7yd9jsk00163cj834a71vch" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Mannggo/tags/JavaEE框架/">JavaEE框架</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Struts2知识点回顾（总结）学习思维导图" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Mannggo/2017/09/24/Struts2知识点回顾（总结）学习思维导图/" class="article-date">
+  <time datetime="2017-09-24T04:50:38.998Z" itemprop="datePublished">2017-09-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Mannggo/2017/09/24/Struts2知识点回顾（总结）学习思维导图/">Struts2知识点回顾（总结）学习思维导图</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <pre><code>总结了这段时间复习struts2的思维导图~
+</code></pre><p><img src="http://img.blog.csdn.net/20170830145628359?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjQ0NDg4OTk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://mannggo.github.io/Mannggo/2017/09/24/Struts2知识点回顾（总结）学习思维导图/" data-id="cj7yd9jtq001s3cj8zomgz6eg" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Mannggo/tags/JavaEE框架/">JavaEE框架</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Struts2知识点回顾（八）OGNL与ValueStack" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Mannggo/2017/09/24/Struts2知识点回顾（八）OGNL与ValueStack/" class="article-date">
+  <time datetime="2017-09-24T04:50:10.487Z" itemprop="datePublished">2017-09-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Mannggo/2017/09/24/Struts2知识点回顾（八）OGNL与ValueStack/">Struts2知识点回顾（八）OGNL与ValueStack</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-什么是OGNL？什么是ValueStack"><a href="#1-什么是OGNL？什么是ValueStack" class="headerlink" title="1.    什么是OGNL？什么是ValueStack?"></a>1.    什么是OGNL？什么是ValueStack?</h2><p>OGNL（Object Graphic Navigation Language）是一种表达式语言，是一个开源的框架，它可以存取对象的任意属性，调用对象方法。Struts2框架使用OGNL <strong>在页面实现对数据的操作</strong>。</p>
+<p>ValueStack 在Struts2中充当数据传递的媒介，包含OGNL可访问的数据集合，在JSP中可通过OGNL表达式对ValueStack中的数据进行访问。</p>
+<hr>
+<h2 id="2-OGNL能做什么？"><a href="#2-OGNL能做什么？" class="headerlink" title="2.OGNL能做什么？"></a>2.OGNL能做什么？</h2><p>OGNL的作用与EL表达式大同小异。总结了一下他能实现以下常用功能：</p>
+<p>获取Action中的属性（访问JavaBean）。<br>调用对象方法。<br>调用静态方法。<br>访问ActionContext</p>
+<h3 id="2-1获取Action中的属性"><a href="#2-1获取Action中的属性" class="headerlink" title="2.1获取Action中的属性"></a>2.1获取Action中的属性</h3><p>需要提供Bean属性的getter和setter<br>因为当前Action在ValueStack的root栈中，所以直接取，不需要“#”</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ValueStackAction</span> <span class="keyword">extends</span> <span class="title">ActionSupport</span></span>&#123;</div><div class="line">	String name;</div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> name;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.name = name;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">demo</span><span class="params">()</span></span>&#123;</div><div class="line">		name = <span class="string">"good"</span>;</div><div class="line">		<span class="keyword">return</span> SUCCESS;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在页面中获取：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">s:property</span> <span class="attr">value</span>=<span class="string">"name"</span>/&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">s:debug</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h3 id="2-2调用对象方法"><a href="#2-2调用对象方法" class="headerlink" title="2.2调用对象方法"></a>2.2调用对象方法</h3><p>我们不仅可以访问对象属性，还可以通过OGNL表达式调用对象拥有的方法。同样，由于Action位于root栈，所以不需要操作符“#”</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getHello</span><span class="params">(String name)</span></span>&#123;</div><div class="line">	<span class="keyword">return</span> <span class="string">"Hello,"</span> + name;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在页面中调用：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">s:property</span> <span class="attr">value</span>=<span class="string">"getHello('Cindy')"</span>/&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">s:debug</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h3 id="2-3调用静态方法和访问静态数据"><a href="#2-3调用静态方法和访问静态数据" class="headerlink" title="2.3调用静态方法和访问静态数据"></a>2.3调用静态方法和访问静态数据</h3><p>OGNL表达式支持调用静态方法，调用静态方法的格式为”@类的全名@方法名”、访问静态数据的格式为”@类的全名@变量名“<br>注意：如果要执行静态方法，需要在struts.xml中开启允许执行静态方法的配置：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">constant</span> <span class="attr">name</span>=<span class="string">"struts.ognl.allowStaticMethodAccess"</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span></div></pre></td></tr></table></figure>
+<p>在页面中调用Math的random方法，访问Integer的MAX_VALUE值：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;body&gt;</div><div class="line">	&lt;s:property value=<span class="string">"@java.lang.Math@random()"</span>/&gt;</div><div class="line">	&lt;s:property value=<span class="string">"@java.lang.Integer@MAX_VALUE"</span>/&gt;</div><div class="line">	&lt;s:debug/&gt;</div><div class="line">&lt;/body&gt;</div></pre></td></tr></table></figure>
+<h3 id="2-4访问ActionContext"><a href="#2-4访问ActionContext" class="headerlink" title="2.4访问ActionContext"></a>2.4访问ActionContext</h3><p>在ActionContext中我们可以得到四个数据域：request、session、application、parameters，因此，我们可以通过OGNL表达式访问参数域中保存的数据。其中获取ActionContext中的东西需要使用操作符“#”。”#”即表示从ActionContext中取数据</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">demo</span><span class="params">()</span></span>&#123;</div><div class="line">	ServletActionContext.getRequest().setAttribute(<span class="string">"req"</span>, <span class="string">"reqValue"</span>);</div><div class="line">	<span class="keyword">return</span> SUCCESS;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>取出Request域中的值<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;body&gt;</div><div class="line">	&lt;s:property value=<span class="string">"#request.req"</span>/&gt;</div><div class="line">	&lt;s:debug/&gt;</div><div class="line">&lt;/body&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="2-5“-”的用法"><a href="#2-5“-”的用法" class="headerlink" title="2.5“%”的用法"></a>2.5“%”的用法</h3><p>当标签的属性为字符串类型时，可以使用%{xxx}的方式来标识其为OGNL表达式，从而计算表达式，而不是直接使用内容。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;body&gt;</div><div class="line">	&lt;%</div><div class="line">		String value=<span class="string">"确定"</span>;</div><div class="line">		pageContext.setAttribute(<span class="string">"val"</span>, value);</div><div class="line">	%&gt;</div><div class="line">	不使用%符号，会按原样显示&lt;br&gt;</div><div class="line">	&lt;s:submit value=<span class="string">"#attr.val"</span>/&gt;&lt;br&gt;</div><div class="line">	使用%符号，会计算OGNL表达式的值&lt;br&gt;</div><div class="line">	&lt;s:submit value=<span class="string">"%&#123;#attr.val&#125;"</span>/&gt;</div><div class="line"></div><div class="line">&lt;/body&gt;</div></pre></td></tr></table></figure>
+<p><img src="http://img.blog.csdn.net/20170829131100408?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjQ0NDg4OTk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<hr>
+<h2 id="3-OGNL相对于其他表达式有什么优势？"><a href="#3-OGNL相对于其他表达式有什么优势？" class="headerlink" title="3.OGNL相对于其他表达式有什么优势？"></a>3.OGNL相对于其他表达式有什么优势？</h2><p>前提：在Struts2用OGNL表达式，需要用到标签。如<figure class="highlight plain"><figcaption><span>value</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"> - 支持对象方法调用，如xxx.doSomeSpecial();</div><div class="line"> - 支持类静态的方法调用和值访问</div><div class="line"> - 支持赋值操作和表达式串联</div><div class="line"> - 访问OGNL上下文（OGNL context）和ActionContext(很重要)</div><div class="line"> - 操作集合对象</div><div class="line"> - 将页面数据与后台数据绑定在一起。能实现互相传递。</div><div class="line"> </div><div class="line">---------</div><div class="line">## 4.Struts2的OGNL是如何工作的？</div><div class="line">OGNL取的数据都是放在ValueStack和ActionContext中的，而ValueStack又包含了对ActionContext的引用，所以，我们只需要了解ValueStack的结构和使用方法，就能够理解OGNL是怎么从里面取出数据的了。</div><div class="line">首先，用一张图来展现ValueStack的结构:</div><div class="line">![这里写图片描述](http://img.blog.csdn.net/20170829131407131?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjQ0NDg4OTk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)</div><div class="line"></div><div class="line">### 4.1 root</div><div class="line">#### 4.1.1 通过set()设置的值</div><div class="line">这个root是一个栈结构，他保存了ValueStack通过set方法设置的值，调用set方法的时候，会检测root栈中栈顶是否有HashMap，如果有，就直接将key、value压到这个map中，如果栈顶没有这个map，则创建一个HashMap，再将key、value压到这个map中。</div><div class="line"></div><div class="line">``` java</div><div class="line">public String demo()&#123;</div><div class="line">	ValueStack vs = ActionContext.getContext().getValueStack();</div><div class="line">	vs.set(&quot;price&quot;, 500000);</div><div class="line">	return SUCCESS;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>从<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">![这里写图片描述](http://img.blog.csdn.net/20170829131737542?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjQ0NDg4OTk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)</div><div class="line">#### 4.1.2 ValueStackAction</div><div class="line">代表当前执行动作的Action，可以从这里取得Action的属性和方法，这就是为什么我们能够直接从OGNL表达式中取得属性和调用Action中方法的原因，OGNL会在这个root栈中自顶向下搜索，直到找到对应属性或方法为止。</div><div class="line"></div><div class="line">``` java</div><div class="line">public String demo()&#123; </div><div class="line">	name=&quot;abcdefg&quot;;</div><div class="line">	return SUCCESS;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><img src="http://img.blog.csdn.net/20170829132059075?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjQ0NDg4OTk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<h3 id="4-2-OGNLContext"><a href="#4-2-OGNLContext" class="headerlink" title="4.2 OGNLContext"></a>4.2 OGNLContext</h3><p>OGNL上下文，包含了对valuestack的引用，以及request、seesion、application、parameter..等等的Map数据。在OGNL中通过”#“来操作其中的数据，如要取出session中的user对象的age属性：#request.user.age</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">demo</span><span class="params">()</span></span>&#123;</div><div class="line">	ServletActionContext.getRequest().getSession().setAttribute(<span class="string">"username"</span>, <span class="string">"Cindy001"</span>);</div><div class="line">	<span class="keyword">return</span> SUCCESS;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="http://img.blog.csdn.net/20170829132241695?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjQ0NDg4OTk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://mannggo.github.io/Mannggo/2017/09/24/Struts2知识点回顾（八）OGNL与ValueStack/" data-id="cj7yd9jtb001l3cj8wnesfeei" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Mannggo/tags/JavaEE框架/">JavaEE框架</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/Mannggo/">&laquo; __('prev')</a><a class="page-number" href="/Mannggo/">1</a><span class="page-number current">2</span><a class="page-number" href="/Mannggo/page/3/">3</a><a class="page-number" href="/Mannggo/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/Mannggo/page/14/">14</a><a class="extend next" rel="next" href="/Mannggo/page/3/">__('next') &raquo;</a>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/JavaEE/">JavaEE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/JavaEE框架/">JavaEE框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/jQuery/">jQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/个人思考/">个人思考</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/工具/">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/微服务架构/">微服务架构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/设计模式/">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/Mannggo/tags/Java/" style="font-size: 20px;">Java</a> <a href="/Mannggo/tags/JavaEE/" style="font-size: 10px;">JavaEE</a> <a href="/Mannggo/tags/JavaEE框架/" style="font-size: 16px;">JavaEE框架</a> <a href="/Mannggo/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/Mannggo/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/Mannggo/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/Mannggo/tags/个人思考/" style="font-size: 10px;">个人思考</a> <a href="/Mannggo/tags/工具/" style="font-size: 12px;">工具</a> <a href="/Mannggo/tags/微服务架构/" style="font-size: 10px;">微服务架构</a> <a href="/Mannggo/tags/数据库/" style="font-size: 18px;">数据库</a> <a href="/Mannggo/tags/设计模式/" style="font-size: 14px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/Mannggo/archives/2017/09/">September 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/Mannggo/2017/09/24/用构建者的角度去学习一门技术/">用构建者的角度去学习一门技术</a>
+          </li>
+        
+          <li>
+            <a href="/Mannggo/2017/09/24/Java集合框架大纲/">Java集合框架大纲</a>
+          </li>
+        
+          <li>
+            <a href="/Mannggo/2017/09/24/Spring回顾（二）注解实现IoC和DI/">Spring回顾（二）注解实现IoC和DI</a>
+          </li>
+        
+          <li>
+            <a href="/Mannggo/2017/09/24/Spring回顾（一）IoC & DI/">Spring回顾（一）IoC &amp; DI</a>
+          </li>
+        
+          <li>
+            <a href="/Mannggo/2017/09/24/Struts2知识点回顾（总结）学习思维导图/">Struts2知识点回顾（总结）学习思维导图</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Xie zd<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/Mannggo/" class="mobile-nav-link">Home</a>
+  
+    <a href="/Mannggo/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/Mannggo/fancybox/jquery.fancybox.css">
+  <script src="/Mannggo/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/Mannggo/js/script.js"></script>
+
+  </div>
+</body>
+</html>

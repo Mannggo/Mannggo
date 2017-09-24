@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>jQuery鼠标键盘表单事件大全 | 谢仲东’s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+<meta name="keywords" content="jQuery">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jQuery鼠标键盘表单事件大全">
+<meta property="og:url" content="https://mannggo.github.io/Mannggo/2017/09/24/jQuery鼠标键盘表单事件大全/index.html">
+<meta property="og:site_name" content="谢仲东’s Blog">
+<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+<meta property="og:updated_time" content="2017-09-24T06:24:28.186Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jQuery鼠标键盘表单事件大全">
+<meta name="twitter:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+  
+    <link rel="alternate" href="/atom.xml" title="谢仲东’s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/Mannggo/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/Mannggo/" id="logo">谢仲东’s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/Mannggo/">Home</a>
+        
+          <a class="main-nav-link" href="/Mannggo/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://mannggo.github.io/Mannggo"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-jQuery鼠标键盘表单事件大全" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Mannggo/2017/09/24/jQuery鼠标键盘表单事件大全/" class="article-date">
+  <time datetime="2017-09-24T04:48:20.071Z" itemprop="datePublished">2017-09-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      jQuery鼠标键盘表单事件大全
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>jquery事件监听<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="javascript">		$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></div><div class="line"><span class="javascript">			<span class="keyword">var</span> msg = $(<span class="string">'#msg'</span>);</span></div><div class="line"><span class="javascript">			<span class="comment">//鼠标点击事件</span></span></div><div class="line"><span class="javascript">			$(<span class="string">'#div1'</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></div><div class="line"><span class="javascript">				msg.html(<span class="string">'1被点击了'</span>);</span></div><div class="line"><span class="undefined">				msg.fadeIn(1000);</span></div><div class="line"><span class="undefined">				msg.fadeOut(1000);</span></div><div class="line"><span class="undefined">			&#125;);</span></div><div class="line"><span class="javascript">			<span class="comment">//鼠标双击事件</span></span></div><div class="line"><span class="javascript">			$(<span class="string">'#div2'</span>).dblclick(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></div><div class="line"><span class="javascript">				msg.html(<span class="string">'2被双击了'</span>);</span></div><div class="line"><span class="undefined">				msg.fadeIn(1000);</span></div><div class="line"><span class="undefined">				msg.fadeOut(1000);</span></div><div class="line"><span class="undefined">			&#125;);</span></div><div class="line"><span class="javascript">			<span class="comment">//鼠标覆盖事件</span></span></div><div class="line"><span class="javascript">			$(<span class="string">'#div3'</span>).mouseover(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></div><div class="line"><span class="javascript">				msg.html(<span class="string">'鼠标在3上面'</span>);</span></div><div class="line"><span class="undefined">				msg.fadeIn(1000);</span></div><div class="line"><span class="undefined">				msg.fadeOut(1000);</span></div><div class="line"><span class="undefined">			&#125;);</span></div><div class="line"><span class="javascript">			<span class="comment">//鼠标移入事件</span></span></div><div class="line"><span class="javascript">			$(<span class="string">'#div4'</span>).mouseenter(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></div><div class="line"><span class="javascript">				msg.html(<span class="string">'鼠标移入了4'</span>);</span></div><div class="line"><span class="undefined">				msg.fadeIn(1000);</span></div><div class="line"><span class="undefined">				msg.fadeOut(1000);</span></div><div class="line"><span class="undefined">			&#125;);</span></div><div class="line"><span class="javascript">			<span class="comment">//鼠标移出事件</span></span></div><div class="line"><span class="javascript">			$(<span class="string">'#div4'</span>).mouseleave(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></div><div class="line"><span class="javascript">				msg.html(<span class="string">'鼠标移出了4'</span>);</span></div><div class="line"><span class="undefined">				msg.fadeIn(1000);</span></div><div class="line"><span class="undefined">				msg.fadeOut(1000);</span></div><div class="line"><span class="undefined">			&#125;);</span></div><div class="line"><span class="javascript">			<span class="comment">//鼠标按下事件</span></span></div><div class="line"><span class="javascript">			$(<span class="string">'#div5'</span>).mousedown(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></div><div class="line"><span class="javascript">				msg.html(<span class="string">'鼠标在5按下了'</span>);</span></div><div class="line"><span class="undefined">				msg.fadeIn(1000);</span></div><div class="line"><span class="undefined">				msg.fadeOut(1000);</span></div><div class="line"><span class="undefined">			&#125;);</span></div><div class="line"><span class="javascript">			<span class="comment">//鼠标松开事件</span></span></div><div class="line"><span class="javascript">			$(<span class="string">'#div5'</span>).mouseup(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></div><div class="line"><span class="javascript">				msg.html(<span class="string">'鼠标在5松开了'</span>);</span></div><div class="line"><span class="undefined">				msg.fadeIn(1000);</span></div><div class="line"><span class="undefined">				msg.fadeOut(1000);</span></div><div class="line"><span class="undefined">			&#125;);</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="javascript">			$(<span class="string">'#input1'</span>).keydown(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></div><div class="line"><span class="javascript">				msg.html(<span class="string">'在input1按下键盘！'</span>);</span></div><div class="line"><span class="undefined">				msg.fadeIn(1000);</span></div><div class="line"><span class="undefined">				msg.fadeOut(1000);</span></div><div class="line"><span class="undefined">			&#125;);</span></div><div class="line"><span class="javascript">			$(<span class="string">'#input1'</span>).keyup(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></div><div class="line"><span class="javascript">				msg.html(<span class="string">'在input1松开键盘！'</span>);</span></div><div class="line"><span class="undefined">				msg.fadeIn(1000);</span></div><div class="line"><span class="undefined">				msg.fadeOut(1000);</span></div><div class="line"><span class="undefined">			&#125;);</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="javascript">			$(<span class="string">'#input1'</span>).focus(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></div><div class="line"><span class="javascript">				msg.html(<span class="string">'input1得到了焦点！'</span>);</span></div><div class="line"><span class="undefined">				msg.fadeIn(1000);</span></div><div class="line"><span class="undefined">				msg.fadeOut(1000);</span></div><div class="line"><span class="undefined">			&#125;);</span></div><div class="line"><span class="javascript">			$(<span class="string">'#input1'</span>).blur(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></div><div class="line"><span class="javascript">				msg.html(<span class="string">'input1失去了焦点！'</span>);</span></div><div class="line"><span class="undefined">				msg.fadeIn(1000);</span></div><div class="line"><span class="undefined">				msg.fadeOut(1000);</span></div><div class="line"><span class="undefined">			&#125;);</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="javascript">			$(<span class="string">'#input2'</span>).change(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></div><div class="line"><span class="javascript">				msg.html(<span class="string">'input2的内容改变了！并失去了焦点'</span>);</span></div><div class="line"><span class="undefined">				msg.fadeIn(1000);</span></div><div class="line"><span class="undefined">				msg.fadeOut(1000);</span></div><div class="line"><span class="undefined">			&#125;);</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="javascript">			$(<span class="string">'#mainForm'</span>).submit(<span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span></div><div class="line"><span class="javascript">				msg.html(<span class="string">'表单内容提交！'</span>);</span></div><div class="line"><span class="undefined">				msg.fadeIn(1000);</span></div><div class="line"><span class="undefined">				msg.fadeOut(1000);</span></div><div class="line"><span class="undefined">			&#125;);</span></div><div class="line"><span class="undefined">		&#125;);</span></div><div class="line"><span class="undefined">	</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">		.div1&#123;</span></div><div class="line"><span class="undefined">			height: 30px;</span></div><div class="line"><span class="undefined">			width: 30px;</span></div><div class="line"><span class="undefined">			background: pink;</span></div><div class="line"><span class="undefined">			display: inline-block;</span></div><div class="line"><span class="undefined">			margin: 5px;</span></div><div class="line"><span class="undefined">		&#125;</span></div><div class="line"><span class="undefined">	</span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"div1"</span> <span class="attr">id</span>=<span class="string">"div1"</span>&gt;</span>1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"div1"</span> <span class="attr">id</span>=<span class="string">"div2"</span>&gt;</span>2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"div1"</span> <span class="attr">id</span>=<span class="string">"div3"</span>&gt;</span>3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"div1"</span> <span class="attr">id</span>=<span class="string">"div4"</span>&gt;</span>4<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"div1"</span> <span class="attr">id</span>=<span class="string">"div5"</span>&gt;</span>5<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">form</span> <span class="attr">id</span>=<span class="string">"mainForm"</span> <span class="attr">action</span>=<span class="string">"#"</span>&gt;</span></div><div class="line">		1：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"input1"</span>/&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></div><div class="line">		2：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"input2"</span>/&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">name</span>=<span class="string">"submit"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">form</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"msg"</span> <span class="attr">style</span>=<span class="string">"display:none"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://mannggo.github.io/Mannggo/2017/09/24/jQuery鼠标键盘表单事件大全/" data-id="cj7yd9jtx001v3cj8u11niy68" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Mannggo/tags/jQuery/">jQuery</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/Mannggo/2017/09/24/Java对象和JSON字符串的互相转换/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Java对象和JSON字符串的互相转换
+        
+      </div>
+    </a>
+  
+  
+    <a href="/Mannggo/2017/09/24/JavaMail发送HTML邮件/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JavaMail发送HTML邮件</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/JavaEE/">JavaEE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/JavaEE框架/">JavaEE框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/jQuery/">jQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/个人思考/">个人思考</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/工具/">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/微服务架构/">微服务架构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/设计模式/">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/Mannggo/tags/Java/" style="font-size: 20px;">Java</a> <a href="/Mannggo/tags/JavaEE/" style="font-size: 10px;">JavaEE</a> <a href="/Mannggo/tags/JavaEE框架/" style="font-size: 16px;">JavaEE框架</a> <a href="/Mannggo/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/Mannggo/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/Mannggo/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/Mannggo/tags/个人思考/" style="font-size: 10px;">个人思考</a> <a href="/Mannggo/tags/工具/" style="font-size: 12px;">工具</a> <a href="/Mannggo/tags/微服务架构/" style="font-size: 10px;">微服务架构</a> <a href="/Mannggo/tags/数据库/" style="font-size: 18px;">数据库</a> <a href="/Mannggo/tags/设计模式/" style="font-size: 14px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/Mannggo/archives/2017/09/">September 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/Mannggo/2017/09/24/用构建者的角度去学习一门技术/">用构建者的角度去学习一门技术</a>
+          </li>
+        
+          <li>
+            <a href="/Mannggo/2017/09/24/Java集合框架大纲/">Java集合框架大纲</a>
+          </li>
+        
+          <li>
+            <a href="/Mannggo/2017/09/24/Spring回顾（二）注解实现IoC和DI/">Spring回顾（二）注解实现IoC和DI</a>
+          </li>
+        
+          <li>
+            <a href="/Mannggo/2017/09/24/Spring回顾（一）IoC & DI/">Spring回顾（一）IoC &amp; DI</a>
+          </li>
+        
+          <li>
+            <a href="/Mannggo/2017/09/24/Struts2知识点回顾（总结）学习思维导图/">Struts2知识点回顾（总结）学习思维导图</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Xie zd<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/Mannggo/" class="mobile-nav-link">Home</a>
+  
+    <a href="/Mannggo/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/Mannggo/fancybox/jquery.fancybox.css">
+  <script src="/Mannggo/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/Mannggo/js/script.js"></script>
+
+  </div>
+</body>
+</html>

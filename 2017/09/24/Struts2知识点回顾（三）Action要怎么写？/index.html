@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Struts2知识点回顾（三）Action要怎么写？ | 谢仲东’s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Action是干什么的？ 无论你是使用Struts2还是SpringMVC，你都必须知道他们都是基于MVC架构的，而Struts2中的Action和SpringMVC中的Controller都属于架构中的C，也就是Control层，负责客户端与服务器的数据交换，流程控制。比如页面表单提交了用户名密码，Control层的作用就是接收用户名密码，并且调用相关服务或者类验证准确性，最后再回应客户端需要显">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Struts2知识点回顾（三）Action要怎么写？">
+<meta property="og:url" content="https://mannggo.github.io/Mannggo/2017/09/24/Struts2知识点回顾（三）Action要怎么写？/index.html">
+<meta property="og:site_name" content="谢仲东’s Blog">
+<meta property="og:description" content="Action是干什么的？ 无论你是使用Struts2还是SpringMVC，你都必须知道他们都是基于MVC架构的，而Struts2中的Action和SpringMVC中的Controller都属于架构中的C，也就是Control层，负责客户端与服务器的数据交换，流程控制。比如页面表单提交了用户名密码，Control层的作用就是接收用户名密码，并且调用相关服务或者类验证准确性，最后再回应客户端需要显">
+<meta property="og:image" content="http://img.blog.csdn.net/20170729155922277?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjQ0NDg4OTk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2017-09-24T05:54:17.039Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Struts2知识点回顾（三）Action要怎么写？">
+<meta name="twitter:description" content="Action是干什么的？ 无论你是使用Struts2还是SpringMVC，你都必须知道他们都是基于MVC架构的，而Struts2中的Action和SpringMVC中的Controller都属于架构中的C，也就是Control层，负责客户端与服务器的数据交换，流程控制。比如页面表单提交了用户名密码，Control层的作用就是接收用户名密码，并且调用相关服务或者类验证准确性，最后再回应客户端需要显">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20170729155922277?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjQ0NDg4OTk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+  
+    <link rel="alternate" href="/atom.xml" title="谢仲东’s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/Mannggo/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/Mannggo/" id="logo">谢仲东’s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/Mannggo/">Home</a>
+        
+          <a class="main-nav-link" href="/Mannggo/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://mannggo.github.io/Mannggo"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Struts2知识点回顾（三）Action要怎么写？" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Mannggo/2017/09/24/Struts2知识点回顾（三）Action要怎么写？/" class="article-date">
+  <time datetime="2017-09-24T04:44:08.032Z" itemprop="datePublished">2017-09-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Struts2知识点回顾（三）Action要怎么写？
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Action是干什么的？"><a href="#Action是干什么的？" class="headerlink" title="Action是干什么的？"></a>Action是干什么的？</h2><hr>
+<p>无论你是使用Struts2还是SpringMVC，你都必须知道他们都是基于MVC架构的，而Struts2中的Action和SpringMVC中的Controller都属于架构中的C，也就是Control层，负责客户端与服务器的数据交换，流程控制。比如页面表单提交了用户名密码，Control层的作用就是接收用户名密码，并且调用相关服务或者类验证准确性，最后再回应客户端需要显示什么View结果。</p>
+<p> Action在Struts2中至关重要，让数据传到后台，就已经可以把参数当做本地变量处理了。Action实质上是一个Servlet，通过框架的内部实现和功能增强，让数据不再需要通过request.getParameter()来获取，只需要将参数作为成员变量定义在Action类中，框架就会帮我们注入参数值，看起来就像是在调取本地变量。</p>
+<h2 id="Action的写法"><a href="#Action的写法" class="headerlink" title="Action的写法"></a>Action的写法</h2><hr>
+<h3 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h3><ol>
+<li><strong>继承ActionSupport</strong></li>
+<li><strong>方法为public修饰</strong></li>
+<li><strong>方法无参数</strong></li>
+<li><strong>方法返回值为String类型</strong></li>
+</ol>
+<h3 id="写法"><a href="#写法" class="headerlink" title="写法"></a>写法</h3><p>MyAction.java<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> action;</div><div class="line"></div><div class="line"><span class="keyword">import</span> com.opensymphony.xwork2.ActionSupport;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyAction</span> <span class="keyword">extends</span> <span class="title">ActionSupport</span> </span>&#123;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1L</span>;</div><div class="line">	<span class="comment">//参数直接被框架注入到Action类的成员变量中</span></div><div class="line">	<span class="keyword">private</span> String name;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> age;</div><div class="line">	</div><div class="line">	<span class="comment">//action方法，在配置文件中配置映射</span></div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">hi</span><span class="params">()</span></span>&#123;</div><div class="line">		System.out.println(<span class="string">"run---&gt; hi,"</span>+name+<span class="string">","</span>+age);</div><div class="line">		<span class="keyword">return</span> SUCCESS;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">hello</span><span class="params">()</span></span>&#123;</div><div class="line">		System.out.println(<span class="string">"run---&gt; hello,"</span>+name+<span class="string">","</span>+age);</div><div class="line">		<span class="keyword">return</span> SUCCESS;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> name;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.name = name;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> age;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.age = age;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>映射关系<br>配置文件struts.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span> <span class="meta">?&gt;</span></span></div><div class="line"><span class="meta">&lt;!DOCTYPE struts PUBLIC</span></div><div class="line"><span class="meta">    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"</span></div><div class="line"><span class="meta">    "http://struts.apache.org/dtds/struts-2.3.dtd"&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">struts</span>&gt;</span></div><div class="line">	<span class="comment">&lt;!-- namespace要用"/" action不用--&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"myaction"</span> <span class="attr">extends</span>=<span class="string">"struts-default"</span> <span class="attr">namespace</span>=<span class="string">"/myaction"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"*"</span> <span class="attr">class</span>=<span class="string">"action.MyAction"</span> <span class="attr">method</span>=<span class="string">"&#123;1&#125;"</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"success"</span>&gt;</span>/success.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">action</span>&gt;</span></div><div class="line">		<span class="comment">&lt;!-- 也可以写成↓↓↓</span></div><div class="line"><span class="comment">		&lt;action name="hi" class="action.MyAction" method="hi"&gt;</span></div><div class="line"><span class="comment">			&lt;result name="success"&gt;/success.jsp&lt;/result&gt;</span></div><div class="line"><span class="comment">		&lt;/action&gt;</span></div><div class="line"><span class="comment">		--&gt;</span></div><div class="line">		</div><div class="line">	<span class="tag">&lt;/<span class="name">package</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">struts</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>访问结果：</p>
+<p><img src="http://img.blog.csdn.net/20170729155922277?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjQ0NDg4OTk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<h2 id="在Action中怎么访问一些常用的实例"><a href="#在Action中怎么访问一些常用的实例" class="headerlink" title="在Action中怎么访问一些常用的实例"></a>在Action中怎么访问一些常用的实例</h2><p>在Action中，我们要取得像pageContext、request、response、servletContext该写什么语句呢？</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//通过ServletActionContext类的静态方法取得。</span></div><div class="line">ServletActionContext.getPageContext();</div><div class="line">ServletActionContext.getRequest();</div><div class="line">ServletActionContext.getResponse();</div><div class="line">ServletActionContext.getServletContext();</div></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://mannggo.github.io/Mannggo/2017/09/24/Struts2知识点回顾（三）Action要怎么写？/" data-id="cj7yd9jsy001d3cj8ha3752s9" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/Mannggo/2017/09/24/Struts2知识点回顾（四）怎么传递对象参数？/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Struts2知识点回顾（四）怎么传递对象参数？
+        
+      </div>
+    </a>
+  
+  
+    <a href="/Mannggo/2017/09/24/Struts2知识点回顾（二）Struts2项目准备和配置文件结构/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Struts2知识点回顾（二）Struts2项目准备和配置文件结构</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/JavaEE/">JavaEE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/JavaEE框架/">JavaEE框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/jQuery/">jQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/个人思考/">个人思考</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/工具/">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/微服务架构/">微服务架构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/设计模式/">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/Mannggo/tags/Java/" style="font-size: 20px;">Java</a> <a href="/Mannggo/tags/JavaEE/" style="font-size: 10px;">JavaEE</a> <a href="/Mannggo/tags/JavaEE框架/" style="font-size: 16px;">JavaEE框架</a> <a href="/Mannggo/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/Mannggo/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/Mannggo/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/Mannggo/tags/个人思考/" style="font-size: 10px;">个人思考</a> <a href="/Mannggo/tags/工具/" style="font-size: 12px;">工具</a> <a href="/Mannggo/tags/微服务架构/" style="font-size: 10px;">微服务架构</a> <a href="/Mannggo/tags/数据库/" style="font-size: 18px;">数据库</a> <a href="/Mannggo/tags/设计模式/" style="font-size: 14px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/Mannggo/archives/2017/09/">September 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/Mannggo/2017/09/24/用构建者的角度去学习一门技术/">用构建者的角度去学习一门技术</a>
+          </li>
+        
+          <li>
+            <a href="/Mannggo/2017/09/24/Java集合框架大纲/">Java集合框架大纲</a>
+          </li>
+        
+          <li>
+            <a href="/Mannggo/2017/09/24/Spring回顾（二）注解实现IoC和DI/">Spring回顾（二）注解实现IoC和DI</a>
+          </li>
+        
+          <li>
+            <a href="/Mannggo/2017/09/24/Spring回顾（一）IoC & DI/">Spring回顾（一）IoC &amp; DI</a>
+          </li>
+        
+          <li>
+            <a href="/Mannggo/2017/09/24/Struts2知识点回顾（总结）学习思维导图/">Struts2知识点回顾（总结）学习思维导图</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Xie zd<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/Mannggo/" class="mobile-nav-link">Home</a>
+  
+    <a href="/Mannggo/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/Mannggo/fancybox/jquery.fancybox.css">
+  <script src="/Mannggo/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/Mannggo/js/script.js"></script>
+
+  </div>
+</body>
+</html>

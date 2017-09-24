@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Struts2知识点回顾（四）怎么传递对象参数？ | 谢仲东’s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Struts2能传递哪些参数？ 在远古时期，也就是我们使用Servlet + jsp 的时期，提交一个表单，传递的是一个个的字符串。尽管表单页面我们能设计得非常多样，但是到了传递的时候，最终还是将其化作字符串传递到服务端。 在Struts2中，框架替我们做了很多便利的事，比如，我们可以通过表单组件的name，来决定传递的数据在Action中被解析成普通参数、对象、List、还是Map。 传递形式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Struts2知识点回顾（四）怎么传递对象参数？">
+<meta property="og:url" content="https://mannggo.github.io/Mannggo/2017/09/24/Struts2知识点回顾（四）怎么传递对象参数？/index.html">
+<meta property="og:site_name" content="谢仲东’s Blog">
+<meta property="og:description" content="Struts2能传递哪些参数？ 在远古时期，也就是我们使用Servlet + jsp 的时期，提交一个表单，传递的是一个个的字符串。尽管表单页面我们能设计得非常多样，但是到了传递的时候，最终还是将其化作字符串传递到服务端。 在Struts2中，框架替我们做了很多便利的事，比如，我们可以通过表单组件的name，来决定传递的数据在Action中被解析成普通参数、对象、List、还是Map。 传递形式">
+<meta property="og:image" content="http://img.blog.csdn.net/20170729165908437?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjQ0NDg4OTk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2017-09-24T05:54:52.007Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Struts2知识点回顾（四）怎么传递对象参数？">
+<meta name="twitter:description" content="Struts2能传递哪些参数？ 在远古时期，也就是我们使用Servlet + jsp 的时期，提交一个表单，传递的是一个个的字符串。尽管表单页面我们能设计得非常多样，但是到了传递的时候，最终还是将其化作字符串传递到服务端。 在Struts2中，框架替我们做了很多便利的事，比如，我们可以通过表单组件的name，来决定传递的数据在Action中被解析成普通参数、对象、List、还是Map。 传递形式">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20170729165908437?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjQ0NDg4OTk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+  
+    <link rel="alternate" href="/atom.xml" title="谢仲东’s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/Mannggo/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/Mannggo/" id="logo">谢仲东’s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/Mannggo/">Home</a>
+        
+          <a class="main-nav-link" href="/Mannggo/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://mannggo.github.io/Mannggo"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Struts2知识点回顾（四）怎么传递对象参数？" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Mannggo/2017/09/24/Struts2知识点回顾（四）怎么传递对象参数？/" class="article-date">
+  <time datetime="2017-09-24T04:44:34.823Z" itemprop="datePublished">2017-09-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Struts2知识点回顾（四）怎么传递对象参数？
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Struts2能传递哪些参数？"><a href="#Struts2能传递哪些参数？" class="headerlink" title="Struts2能传递哪些参数？"></a>Struts2能传递哪些参数？</h2><hr>
+<p>在远古时期，也就是我们使用Servlet + jsp 的时期，提交一个表单，传递的是一个个的字符串。尽管表单页面我们能设计得非常多样，但是到了传递的时候，最终还是将其化作字符串传递到服务端。</p>
+<p>在Struts2中，框架替我们做了很多便利的事，比如，我们可以通过表单组件的name，来决定传递的数据在Action中被解析成<strong>普通参数、对象、List、还是Map</strong>。</p>
+<h2 id="传递形式"><a href="#传递形式" class="headerlink" title="传递形式"></a>传递形式</h2><hr>
+<p>在复习Action的时候说过，Action中要获取页面传递过来的参数，只需要在Action中定义成员变量并且提供设置器(Setter)和获取器(Getter)，Struts2就会帮我们把数据封装进去。传递对象也一样，页面中填的依旧是字符串，只不过到了Action之后框架会根据参数的名称name来判读要“组装”成什么样的参数。</p>
+<h2 id="写法"><a href="#写法" class="headerlink" title="写法"></a>写法</h2><hr>
+<p>下面就以Person，List&lt;Person&gt;, Map&lt;String, Person&gt;接收参数为例：</p>
+<p>Person.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> action;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.io.Serializable;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="keyword">implements</span> <span class="title">Serializable</span></span>&#123;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="string">"Person [name="</span> + name + <span class="string">", age="</span> + age + <span class="string">"]"</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">private</span> String name;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> age;</div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> name;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.name = name;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> age;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.age = age;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>ArgsTestAction.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> action;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.List;</div><div class="line"><span class="keyword">import</span> java.util.Map;</div><div class="line"></div><div class="line"><span class="keyword">import</span> com.opensymphony.xwork2.ActionSupport;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArgsTestAction</span> <span class="keyword">extends</span> <span class="title">ActionSupport</span> </span>&#123;</div><div class="line">	<span class="comment">//装参数的变量们</span></div><div class="line">	<span class="keyword">private</span> Person person;</div><div class="line">	<span class="keyword">private</span> List&lt;Person&gt; personList;</div><div class="line">	<span class="keyword">private</span> Map&lt;String,Person&gt; personMap;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">comeOn</span><span class="params">()</span></span>&#123;</div><div class="line">		System.out.println(person.toString());</div><div class="line">		</div><div class="line">		System.out.println(<span class="string">"\nlist of person:"</span>);</div><div class="line">		<span class="keyword">for</span>(Person p : personList)&#123;</div><div class="line">			System.out.println(p);</div><div class="line">		&#125;</div><div class="line">		</div><div class="line">		System.out.println(<span class="string">"\nmap of person:"</span>);</div><div class="line">		<span class="keyword">for</span>(String key : personMap.keySet())&#123;</div><div class="line">			System.out.println(personMap.get(key));</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> SUCCESS;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> Person <span class="title">getPerson</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> person;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPerson</span><span class="params">(Person person)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.person = person;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> List&lt;Person&gt; <span class="title">getPersonList</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> personList;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPersonList</span><span class="params">(List&lt;Person&gt; personList)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.personList = personList;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> Map&lt;String, Person&gt; <span class="title">getPersonMap</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> personMap;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPersonMap</span><span class="params">(Map&lt;String, Person&gt; personMap)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.personMap = personMap;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>配置文件struts.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span> <span class="meta">?&gt;</span></span></div><div class="line"><span class="meta">&lt;!DOCTYPE struts PUBLIC</span></div><div class="line"><span class="meta">    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"</span></div><div class="line"><span class="meta">    "http://struts.apache.org/dtds/struts-2.3.dtd"&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">struts</span>&gt;</span></div><div class="line">	<span class="comment">&lt;!-- namespace要用"/" action不用--&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"test"</span> <span class="attr">extends</span>=<span class="string">"struts-default"</span> <span class="attr">namespace</span>=<span class="string">"/test"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"comeOn"</span> <span class="attr">class</span>=<span class="string">"action.ArgsTestAction"</span> <span class="attr">method</span>=<span class="string">"comeOn"</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"success"</span>&gt;</span>/success.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">action</span>&gt;</span></div><div class="line">		</div><div class="line">	<span class="tag">&lt;/<span class="name">package</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">struts</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>输入页面input.jsp</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">&lt;%@ page language=<span class="string">"java"</span> contentType=<span class="string">"text/html; charset=UTF-8"</span></div><div class="line">    pageEncoding=<span class="string">"UTF-8"</span>%&gt;</div><div class="line">&lt;!DOCTYPE html PUBLIC <span class="string">"-//W3C//DTD HTML 4.01 Transitional//EN"</span> <span class="string">"http://www.w3.org/TR/html4/loose.dtd"</span>&gt;</div><div class="line">&lt;html&gt;</div><div class="line">&lt;head&gt;</div><div class="line">&lt;meta http-equiv=<span class="string">"Content-Type"</span> content=<span class="string">"text/html; charset=UTF-8"</span>&gt;</div><div class="line">&lt;title&gt;Insert title here&lt;/title&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">	&lt;form action=<span class="string">"$&#123;pageContext.request.contextPath &#125;/test/comeOn"</span> method=<span class="string">"post"</span>&gt;</div><div class="line">		&lt;!-- Person对象传递，使用<span class="string">"Action定义的对象名.对象属性"</span>形式获取 --&gt;</div><div class="line">		用户<span class="number">1</span> &gt;&gt;&gt;姓名：&lt;input type=<span class="string">"text"</span> name=<span class="string">"person.name"</span>&gt;年龄：&lt;input type=<span class="string">"text"</span> name=<span class="string">"person.age"</span>&gt;&lt;br&gt;</div><div class="line">		</div><div class="line">		&lt;!-- List对象传递，使用<span class="string">"Action定义的List名.[坐标].对象属性"</span>形式获取 --&gt;</div><div class="line">		用户<span class="number">2</span> &gt;&gt;&gt;姓名：&lt;input type=<span class="string">"text"</span> name=<span class="string">"personList[0].name"</span>&gt;年龄：&lt;input type=<span class="string">"text"</span> name=<span class="string">"personList[0].age"</span>&gt;&lt;br&gt;</div><div class="line">		用户<span class="number">3</span> &gt;&gt;&gt;姓名：&lt;input type=<span class="string">"text"</span> name=<span class="string">"personList[1].name"</span>&gt;年龄：&lt;input type=<span class="string">"text"</span> name=<span class="string">"personList[1].age"</span>&gt;&lt;br&gt;</div><div class="line">		</div><div class="line">		&lt;!-- Map对象传递，使用<span class="string">"Action定义的Map名.[key].对象属性"</span>形式获取 --&gt;</div><div class="line">		用户<span class="number">4</span> &gt;&gt;&gt;姓名：&lt;input type=<span class="string">"text"</span> name=<span class="string">"personMap['no1'].name"</span>&gt;年龄：&lt;input type=<span class="string">"text"</span> name=<span class="string">"personMap['no1'].age"</span>&gt;&lt;br&gt;</div><div class="line">		用户<span class="number">5</span> &gt;&gt;&gt;姓名：&lt;input type=<span class="string">"text"</span> name=<span class="string">"personMap['no2'].name"</span>&gt;年龄：&lt;input type=<span class="string">"text"</span> name=<span class="string">"personMap['no2'].age"</span>&gt;&lt;br&gt;</div><div class="line">		&lt;input type=<span class="string">"submit"</span>&gt;</div><div class="line">	&lt;/form&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<h2 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h2><p><img src="http://img.blog.csdn.net/20170729165908437?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjQ0NDg4OTk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://mannggo.github.io/Mannggo/2017/09/24/Struts2知识点回顾（四）怎么传递对象参数？/" data-id="cj7yd9jtk001q3cj8yi77t3bp" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/Mannggo/2017/09/24/Struts2知识点回顾（五）拦截器的工作流程以及如何实现/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Struts2知识点回顾（五）拦截器的工作流程以及如何实现
+        
+      </div>
+    </a>
+  
+  
+    <a href="/Mannggo/2017/09/24/Struts2知识点回顾（三）Action要怎么写？/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Struts2知识点回顾（三）Action要怎么写？</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/JavaEE/">JavaEE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/JavaEE框架/">JavaEE框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/jQuery/">jQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/个人思考/">个人思考</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/工具/">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/微服务架构/">微服务架构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/设计模式/">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/Mannggo/tags/Java/" style="font-size: 20px;">Java</a> <a href="/Mannggo/tags/JavaEE/" style="font-size: 10px;">JavaEE</a> <a href="/Mannggo/tags/JavaEE框架/" style="font-size: 16px;">JavaEE框架</a> <a href="/Mannggo/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/Mannggo/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/Mannggo/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/Mannggo/tags/个人思考/" style="font-size: 10px;">个人思考</a> <a href="/Mannggo/tags/工具/" style="font-size: 12px;">工具</a> <a href="/Mannggo/tags/微服务架构/" style="font-size: 10px;">微服务架构</a> <a href="/Mannggo/tags/数据库/" style="font-size: 18px;">数据库</a> <a href="/Mannggo/tags/设计模式/" style="font-size: 14px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/Mannggo/archives/2017/09/">September 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/Mannggo/2017/09/24/用构建者的角度去学习一门技术/">用构建者的角度去学习一门技术</a>
+          </li>
+        
+          <li>
+            <a href="/Mannggo/2017/09/24/Java集合框架大纲/">Java集合框架大纲</a>
+          </li>
+        
+          <li>
+            <a href="/Mannggo/2017/09/24/Spring回顾（二）注解实现IoC和DI/">Spring回顾（二）注解实现IoC和DI</a>
+          </li>
+        
+          <li>
+            <a href="/Mannggo/2017/09/24/Spring回顾（一）IoC & DI/">Spring回顾（一）IoC &amp; DI</a>
+          </li>
+        
+          <li>
+            <a href="/Mannggo/2017/09/24/Struts2知识点回顾（总结）学习思维导图/">Struts2知识点回顾（总结）学习思维导图</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Xie zd<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/Mannggo/" class="mobile-nav-link">Home</a>
+  
+    <a href="/Mannggo/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/Mannggo/fancybox/jquery.fancybox.css">
+  <script src="/Mannggo/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/Mannggo/js/script.js"></script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Redis数据操作——（1）String类型相关操作 | 谢仲东’s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="String一个键对应一个字符串，一个键最多能存储一个512Mb的String 相关操作设置操作1. set key value123#设置maxSize的值为&amp;quot;256k&amp;quot;127.0.0.1:6379&amp;gt;set maxSize 256kOK 2. setnx key value12345#key不存在时插入，存在时不作操作。127.0.0.1:6379&amp;gt;setnx m">
+<meta name="keywords" content="数据库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis数据操作——（1）String类型相关操作">
+<meta property="og:url" content="https://mannggo.github.io/Mannggo/2017/09/24/Redis数据操作——（1）String类型相关操作/index.html">
+<meta property="og:site_name" content="谢仲东’s Blog">
+<meta property="og:description" content="String一个键对应一个字符串，一个键最多能存储一个512Mb的String 相关操作设置操作1. set key value123#设置maxSize的值为&amp;quot;256k&amp;quot;127.0.0.1:6379&amp;gt;set maxSize 256kOK 2. setnx key value12345#key不存在时插入，存在时不作操作。127.0.0.1:6379&amp;gt;setnx m">
+<meta property="og:updated_time" content="2017-09-24T06:26:54.954Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Redis数据操作——（1）String类型相关操作">
+<meta name="twitter:description" content="String一个键对应一个字符串，一个键最多能存储一个512Mb的String 相关操作设置操作1. set key value123#设置maxSize的值为&amp;quot;256k&amp;quot;127.0.0.1:6379&amp;gt;set maxSize 256kOK 2. setnx key value12345#key不存在时插入，存在时不作操作。127.0.0.1:6379&amp;gt;setnx m">
+  
+    <link rel="alternate" href="/atom.xml" title="谢仲东’s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/Mannggo/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/Mannggo/" id="logo">谢仲东’s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/Mannggo/">Home</a>
+        
+          <a class="main-nav-link" href="/Mannggo/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://mannggo.github.io/Mannggo"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Redis数据操作——（1）String类型相关操作" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Mannggo/2017/09/24/Redis数据操作——（1）String类型相关操作/" class="article-date">
+  <time datetime="2017-09-24T04:23:44.542Z" itemprop="datePublished">2017-09-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Redis数据操作——（1）String类型相关操作
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><p>一个键对应一个字符串，一个键最多能存储一个512Mb的String</p>
+<h3 id="相关操作"><a href="#相关操作" class="headerlink" title="相关操作"></a>相关操作</h3><h4 id="设置操作"><a href="#设置操作" class="headerlink" title="设置操作"></a>设置操作</h4><h5 id="1-set-key-value"><a href="#1-set-key-value" class="headerlink" title="1. set key value"></a>1. set key value</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#设置maxSize的值为&quot;256k&quot;</div><div class="line">127.0.0.1:6379&gt;set maxSize 256k</div><div class="line">OK</div></pre></td></tr></table></figure>
+<h5 id="2-setnx-key-value"><a href="#2-setnx-key-value" class="headerlink" title="2. setnx key value"></a>2. setnx key value</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#key不存在时插入，存在时不作操作。</div><div class="line">127.0.0.1:6379&gt;setnx maxSize 512k</div><div class="line">(integer) 0 #插入不成功</div><div class="line">127.0.0.1:6379&gt;setnx minSize 128k</div><div class="line">(integer) 1 #插入成功</div></pre></td></tr></table></figure>
+<h5 id="3-setex-key-超时时间-value"><a href="#3-setex-key-超时时间-value" class="headerlink" title="3. setex key 超时时间 value"></a>3. setex key 超时时间 value</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#设置值的时候规定有效时间（单位为s）</div><div class="line">127.0.0.1:6379&gt;setnx minSize 2 128k</div><div class="line">OK</div><div class="line">127.0.0.1:6379&gt;get minSize </div><div class="line">&quot;128k&quot;</div><div class="line">127.0.0.1:6379&gt;get minSize</div><div class="line">(nil) #已失效</div></pre></td></tr></table></figure>
+<h5 id="4-mset-key-value-key-value-…"><a href="#4-mset-key-value-key-value-…" class="headerlink" title="4. mset key value [key] [value] …"></a>4. mset key value [key] [value] …</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#同时设置多个键值对</div><div class="line">127.0.0.1:6379&gt;mset maxSize 512k minSize 128k</div><div class="line">OK</div></pre></td></tr></table></figure>
+<h5 id="5-msetnx-key-value-key-value-…"><a href="#5-msetnx-key-value-key-value-…" class="headerlink" title="5. msetnx key value [key] [value] …"></a>5. msetnx key value [key] [value] …</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#所有的key都不存在的时候才插入，否则会插入失败</div><div class="line">127.0.0.1:6379&gt;msetnx maxSize 512k minSize 128k</div><div class="line">OK</div></pre></td></tr></table></figure>
+<h4 id="获取操作"><a href="#获取操作" class="headerlink" title="获取操作"></a>获取操作</h4><h5 id="1-get-key"><a href="#1-get-key" class="headerlink" title="1.get key"></a>1.get key</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">127.0.0.1:6379&gt;get minSize </div><div class="line">&quot;128k&quot;</div></pre></td></tr></table></figure>
+<h5 id="2-mget-key-key-…"><a href="#2-mget-key-key-…" class="headerlink" title="2 .mget key [key]…"></a>2 .mget key [key]…</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#一次获取多个值</div><div class="line">127.0.0.1:6379&gt;mget maxSize minSize</div><div class="line">1) &quot;512k&quot;</div><div class="line">2) &quot;128k&quot;</div></pre></td></tr></table></figure>
+<h5 id="3-getrange-key-开始下标-结束下标"><a href="#3-getrange-key-开始下标-结束下标" class="headerlink" title="3.getrange key 开始下标 结束下标"></a>3.getrange key 开始下标 结束下标</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#0表示第一位，-1表示最后一位</div><div class="line">127.0.0.1:6379&gt;set str abcde</div><div class="line">OK</div><div class="line">127.0.0.1:6379&gt;getrange str 0 2</div><div class="line">&quot;abc&quot;</div></pre></td></tr></table></figure>
+<h4 id="修改操作"><a href="#修改操作" class="headerlink" title="修改操作"></a>修改操作</h4><h5 id="1-getset-key-value"><a href="#1-getset-key-value" class="headerlink" title="1.getset key value"></a>1.getset key value</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#修改并且返回原来的值</div><div class="line">127.0.0.1:6379&gt;getset str abab</div><div class="line">&quot;abcde&quot;</div></pre></td></tr></table></figure>
+<h5 id="2-append-key-value"><a href="#2-append-key-value" class="headerlink" title="2.append key value"></a>2.append key value</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#如果key存在就append到后面，不存在就相当于set</div><div class="line">127.0.0.1:6379&gt;append str ok</div><div class="line">(integer)6 #返回的是设置后的字符串长度</div><div class="line">127.0.0.1:6379&gt;get str</div><div class="line">&quot;ababok&quot;</div></pre></td></tr></table></figure>
+<h5 id="3-setrange-key-偏移量-value"><a href="#3-setrange-key-偏移量-value" class="headerlink" title="3.setrange key 偏移量 value"></a>3.setrange key 偏移量 value</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#从某个位置开始重写value</div><div class="line">127.0.0.1:6379&gt;setrange str 1 ??</div><div class="line">(integer) 6</div><div class="line">127.0.0.1:6379&gt;get str</div><div class="line">&quot;a??bok&quot;</div></pre></td></tr></table></figure>
+<h5 id="4-incr-key"><a href="#4-incr-key" class="headerlink" title="4.incr key"></a>4.incr key</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#为某个value为数字的key递增1,如果不存在，则当做原来是0进行递增</div><div class="line">127.0.0.1:6379&gt;set num 1</div><div class="line">OK</div><div class="line">127.0.0.1:6379&gt;incr num</div><div class="line">(integer) 1</div><div class="line">127.0.0.1:6379&gt;get num</div><div class="line">&quot;1&quot;</div></pre></td></tr></table></figure>
+<h5 id="5-incrby-key-增长步长"><a href="#5-incrby-key-增长步长" class="headerlink" title="5.incrby key 增长步长"></a>5.incrby key 增长步长</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#为某个value为数字的key递增指定的步长,如果不存在，则当做原来是0进行递增</div><div class="line">127.0.0.1:6379&gt;set num 1</div><div class="line">OK</div><div class="line">127.0.0.1:6379&gt;incrby num 5</div><div class="line">(integer) 6</div><div class="line">127.0.0.1:6379&gt;get num</div><div class="line">&quot;6&quot;</div></pre></td></tr></table></figure>
+<h5 id="6-decr-key"><a href="#6-decr-key" class="headerlink" title="6.decr key"></a>6.decr key</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#为某个value为数字的key递减1,如果不存在，则当做原来是0进行递减</div><div class="line">127.0.0.1:6379&gt;set num 2</div><div class="line">OK</div><div class="line">127.0.0.1:6379&gt;decr num</div><div class="line">(integer) 1</div><div class="line">127.0.0.1:6379&gt;get num</div><div class="line">&quot;1&quot;</div></pre></td></tr></table></figure>
+<h5 id="7-decrby-key-递减步长"><a href="#7-decrby-key-递减步长" class="headerlink" title="7.decrby key 递减步长"></a>7.decrby key 递减步长</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#为某个value为数字的key递减指定的步长,如果不存在，则当做原来是0进行递减</div><div class="line">127.0.0.1:6379&gt;set num 5</div><div class="line">OK</div><div class="line">127.0.0.1:6379&gt;decrby num 1</div><div class="line">(integer) 4</div><div class="line">127.0.0.1:6379&gt;get num</div><div class="line">&quot;4&quot;</div></pre></td></tr></table></figure>
+<h4 id="删除、查看长度"><a href="#删除、查看长度" class="headerlink" title="删除、查看长度"></a>删除、查看长度</h4><h5 id="1-del-key-key"><a href="#1-del-key-key" class="headerlink" title="1.del key [key]"></a>1.del key [key]</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">127.0.0.1:6379&gt;del num</div><div class="line">(integer) 1</div></pre></td></tr></table></figure>
+<h5 id="2-strlen-key"><a href="#2-strlen-key" class="headerlink" title="2.strlen key"></a>2.strlen key</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#查看长度</div><div class="line">127.0.0.1:6379&gt;set str &quot;abcd&quot;</div><div class="line">OK</div><div class="line">127.0.0.1:6379&gt;strlen str</div><div class="line">(integer) 4</div></pre></td></tr></table></figure>
+<p>参考了大神的文章，一步一步自己打出来的。在这里留下笔记供以后参考。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://mannggo.github.io/Mannggo/2017/09/24/Redis数据操作——（1）String类型相关操作/" data-id="cj7yd9jrk000m3cj8sqmonu80" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Mannggo/tags/数据库/">数据库</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/Mannggo/2017/09/24/Redis数据操作——（2）一个文档搞定/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Redis数据操作——（2）一个文档搞定
+        
+      </div>
+    </a>
+  
+  
+    <a href="/Mannggo/2017/09/24/数据库外连接（左、右、全）、内连接/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">数据库外连接（左、右、全）、内连接</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/JavaEE/">JavaEE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/JavaEE框架/">JavaEE框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/jQuery/">jQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/个人思考/">个人思考</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/工具/">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/微服务架构/">微服务架构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/设计模式/">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/Mannggo/tags/Java/" style="font-size: 20px;">Java</a> <a href="/Mannggo/tags/JavaEE/" style="font-size: 10px;">JavaEE</a> <a href="/Mannggo/tags/JavaEE框架/" style="font-size: 16px;">JavaEE框架</a> <a href="/Mannggo/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/Mannggo/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/Mannggo/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/Mannggo/tags/个人思考/" style="font-size: 10px;">个人思考</a> <a href="/Mannggo/tags/工具/" style="font-size: 12px;">工具</a> <a href="/Mannggo/tags/微服务架构/" style="font-size: 10px;">微服务架构</a> <a href="/Mannggo/tags/数据库/" style="font-size: 18px;">数据库</a> <a href="/Mannggo/tags/设计模式/" style="font-size: 14px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/Mannggo/archives/2017/09/">September 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/Mannggo/2017/09/24/用构建者的角度去学习一门技术/">用构建者的角度去学习一门技术</a>
+          </li>
+        
+          <li>
+            <a href="/Mannggo/2017/09/24/Java集合框架大纲/">Java集合框架大纲</a>
+          </li>
+        
+          <li>
+            <a href="/Mannggo/2017/09/24/Spring回顾（二）注解实现IoC和DI/">Spring回顾（二）注解实现IoC和DI</a>
+          </li>
+        
+          <li>
+            <a href="/Mannggo/2017/09/24/Spring回顾（一）IoC & DI/">Spring回顾（一）IoC &amp; DI</a>
+          </li>
+        
+          <li>
+            <a href="/Mannggo/2017/09/24/Struts2知识点回顾（总结）学习思维导图/">Struts2知识点回顾（总结）学习思维导图</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Xie zd<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/Mannggo/" class="mobile-nav-link">Home</a>
+  
+    <a href="/Mannggo/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/Mannggo/fancybox/jquery.fancybox.css">
+  <script src="/Mannggo/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/Mannggo/js/script.js"></script>
+
+  </div>
+</body>
+</html>
