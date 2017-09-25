@@ -61,6 +61,52 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-SQL——存储过程、触发器" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Mannggo/2017/09/24/SQL——存储过程、触发器/" class="article-date">
+  <time datetime="2017-09-24T04:15:50.942Z" itemprop="datePublished">2017-09-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Mannggo/2017/09/24/SQL——存储过程、触发器/">SQL——存储过程、触发器</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>用于编写能够完成某项工作的一组SQL语句集合，其中包括一些T-SQL(Trasaction-SQL)语句来接收数据、操作数据、逻辑判断，存储过程经过编译后，存储在数据库中，可以直接调用。存储过程可编程可修改，多次执行不会重复编译，所以提高了查询速度。本篇主要讲述MySQL中创建和调用存储过程。</p>
+<h3 id="创建和调用格式"><a href="#创建和调用格式" class="headerlink" title="创建和调用格式"></a>创建和调用格式</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*DELIMITER声明分隔符为 // */</span></div><div class="line">DELIMITER //</div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> a(<span class="keyword">IN</span> b <span class="built_in">char</span>(<span class="number">20</span>))</div><div class="line"><span class="keyword">BEGIN</span></div><div class="line">	</div><div class="line">	<span class="keyword">SELECT</span> b;</div><div class="line"><span class="keyword">END</span>//</div><div class="line"><span class="comment">/*分隔符还原*/</span></div><div class="line">DELIMITER ;</div><div class="line"></div><div class="line"><span class="comment">/*调用存储过程*/</span></div><div class="line"><span class="keyword">SET</span> @<span class="keyword">str</span> = <span class="string">'helloworld'</span>;</div><div class="line"><span class="keyword">CALL</span> a(@<span class="keyword">str</span>);</div><div class="line"></div><div class="line"><span class="comment">/*删除存储过程*/</span></div><div class="line"><span class="keyword">DROP</span> <span class="keyword">PROCEDURE</span> a;</div></pre></td></tr></table></figure>
+<p>（1）  修改分隔符，因为原来的语句分隔符为”；”,所以MySQL会将存储过程当做SQL语句执行，这样存储过程中的SQL语句会在创建时就执行，报错。改成“//”后就不会执行以”;” 结尾的SQL语句，在创建完存储过程之后要将分隔符重新修改成”;”。<br>（2）存储过程的程序体包含在BEGIN…END中。<br>（3）通过call关键字调用存储过程，在调用时如果有参数列表，要传入参数。</p>
+<h2 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h2><h3 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h3><p>触发器是关联一个表的数据对象，他不用手动调用。当其关联表触发了触发器声明的特殊操作时，会自动激活触发器，执行触发器中的SQL语句。触发器是一类特殊的存储过程，当有操作影响到关联表时，触发器自动执行。</p>
+<h3 id="触发器的创建"><a href="#触发器的创建" class="headerlink" title="触发器的创建"></a>触发器的创建</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">（1）创建a表</div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> a</div><div class="line">(</div><div class="line">	info <span class="built_in">DATE</span></div><div class="line">);</div><div class="line"></div><div class="line">（2）创建b表</div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> b</div><div class="line">(</div><div class="line">	<span class="keyword">id</span> <span class="built_in">INT</span> AUTO_INCREMENT,</div><div class="line">	<span class="keyword">NAME</span> <span class="built_in">VARCHAR</span>(<span class="number">40</span>),</div><div class="line">	PRIMARY <span class="keyword">KEY</span> (<span class="keyword">id</span>)</div><div class="line">);</div><div class="line"></div><div class="line">（3）创建触发器关联b表，使每次b表有数据插入时，都在a表中插入插入数据的时间。</div><div class="line">DELIMITER //</div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TRIGGER</span> mytrigger</div><div class="line"><span class="keyword">AFTER</span> <span class="keyword">INSERT</span></div><div class="line"><span class="keyword">ON</span> b</div><div class="line"><span class="keyword">FOR</span> <span class="keyword">EACH</span> <span class="keyword">ROW</span></div><div class="line"><span class="keyword">BEGIN</span></div><div class="line">	<span class="keyword">INSERT</span> <span class="keyword">INTO</span> a(info) <span class="keyword">VALUE</span>(<span class="keyword">NOW</span>());</div><div class="line"><span class="keyword">END</span>//</div><div class="line">DELIMITER ;</div></pre></td></tr></table></figure>
+<p>（4）测试结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">INSERT INTO b VALUES(2,&apos;老王&apos;)</div></pre></td></tr></table></figure>
+<p>表b:<br><img src="http://img.blog.csdn.net/20170924122046204?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjQ0NDg4OTk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>表a:<br><img src="http://img.blog.csdn.net/20170924122054872?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjQ0NDg4OTk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://mannggo.github.io/Mannggo/2017/09/24/SQL——存储过程、触发器/" data-id="cj7zm41ps000yrsj8qfx92wjd" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Mannggo/tags/数据库/">数据库</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-SQL——视图、序列、索引、同义词" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/Mannggo/2017/09/24/SQL——视图、序列、索引、同义词/" class="article-date">
@@ -95,7 +141,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://mannggo.github.io/Mannggo/2017/09/24/SQL——视图、序列、索引、同义词/" data-id="cj7ydjxvg000yj8j8r8dvonj3" class="article-share-link">Share</a>
+      <a data-url="https://mannggo.github.io/Mannggo/2017/09/24/SQL——视图、序列、索引、同义词/" data-id="cj7zm41ps0011rsj8lxvhliqe" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Mannggo/tags/数据库/">数据库</a></li></ul>
@@ -136,53 +182,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://mannggo.github.io/Mannggo/2017/09/24/SQL——创建、管理表（DDL语句）/" data-id="cj7ydjxv9000tj8j85mw0deue" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Mannggo/tags/数据库/">数据库</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-SQL——处理数据（INSERT、DELETE、UPDATE）" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/Mannggo/2017/09/24/SQL——处理数据（INSERT、DELETE、UPDATE）/" class="article-date">
-  <time datetime="2017-09-24T04:13:34.336Z" itemprop="datePublished">2017-09-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/Mannggo/2017/09/24/SQL——处理数据（INSERT、DELETE、UPDATE）/">SQL——处理数据（INSERT、DELETE、UPDATE）</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-SQL语句的分类"><a href="#1-SQL语句的分类" class="headerlink" title="1.SQL语句的分类"></a>1.SQL语句的分类</h3><ol>
-<li>数据操作语句：DML语句（Data Manipulation Language）,包括insert、update、delete。</li>
-<li>数据查询语句：DQL语句（Data Query Language），包括select。</li>
-<li>数据控制语句：DCL语句（Data Control Language）,包括grant、revoke。</li>
-<li>数据定义语言：DDL语句（Data Definition Language），包括create、drop、alter、truncate、view、sequence、index、synonym。</li>
-</ol>
-<h3 id="INSERT"><a href="#INSERT" class="headerlink" title="INSERT"></a>INSERT</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">--往表中插入一条数据</span></div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tab(empno,ename,sal,deptno) <span class="keyword">values</span>(<span class="number">1001</span>,<span class="string">'Tom'</span>,<span class="number">3000</span>,<span class="number">10</span>);</div><div class="line"><span class="comment">--如果插入的数据都不为null,则tab后的括号中的内容可以省略。</span></div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> emp <span class="keyword">values</span>(<span class="number">1001</span>,<span class="string">'Tom'</span>,<span class="number">3000</span>,<span class="number">10</span>);</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">--从另一张表批插入数据</span></div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> emp10</div><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> emp <span class="keyword">where</span> deptno=<span class="number">10</span>;</div></pre></td></tr></table></figure>
-<h3 id="DELETE-amp-TRUNCATE"><a href="#DELETE-amp-TRUNCATE" class="headerlink" title="DELETE &amp; TRUNCATE"></a>DELETE &amp; TRUNCATE</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">--逐条删除表中所有数据</span></div><div class="line"><span class="keyword">delete</span> <span class="keyword">from</span> testdelete;</div><div class="line"></div><div class="line"><span class="comment">--带条件删除单条数据。</span></div><div class="line"><span class="keyword">delete</span> <span class="keyword">from</span> testdelete </div><div class="line"><span class="keyword">where</span> <span class="keyword">no</span> = <span class="number">1</span>;</div><div class="line"></div><div class="line"><span class="comment">--用TRUNCATE清空整张表。（先摧毁原来的表 再重建一张空表）</span></div><div class="line"><span class="keyword">truncate</span> <span class="keyword">table</span> testdelete;</div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">delete和truncate区别</span></div><div class="line"><span class="comment">1. delete逐条删除 truncate 先摧毁 再重建</span></div><div class="line"><span class="comment">2. **** delete是DML(可以rollback)  truncate是DDL（不可以rollback）</span></div><div class="line"><span class="comment">3. delete不会释放空间(undo空间) truncate会</span></div><div class="line"><span class="comment">4. delete会产生碎片 truncate不会</span></div><div class="line"><span class="comment">5. delete可以闪回  truncate不可以(在oracle中)</span></div><div class="line"><span class="comment">*/</span></div></pre></td></tr></table></figure>
-<h3 id="UPDATE"><a href="#UPDATE" class="headerlink" title="UPDATE"></a>UPDATE</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">--按照where条件修改某些记录</span></div><div class="line"><span class="comment">--修改编号为2的学生的姓名和成绩</span></div><div class="line"><span class="keyword">update</span> tab </div><div class="line"><span class="keyword">set</span> <span class="keyword">name</span> = <span class="string">'李白'</span>,</div><div class="line">    score = <span class="number">95</span></div><div class="line"><span class="keyword">where</span> <span class="keyword">no</span> = <span class="number">2</span>;</div></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://mannggo.github.io/Mannggo/2017/09/24/SQL——处理数据（INSERT、DELETE、UPDATE）/" data-id="cj7ydjxvc000vj8j8mr57hrby" class="article-share-link">Share</a>
+      <a data-url="https://mannggo.github.io/Mannggo/2017/09/24/SQL——创建、管理表（DDL语句）/" data-id="cj7zm41pc000xrsj8ruwxa2g7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Mannggo/tags/数据库/">数据库</a></li></ul>
@@ -210,7 +210,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/JavaEE/">JavaEE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/JavaEE框架/">JavaEE框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/jQuery/">jQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/个人思考/">个人思考</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/工具/">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/微服务架构/">微服务架构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/设计模式/">设计模式</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/JavaEE/">JavaEE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/JavaEE框架/">JavaEE框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/Nodejs/">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/jQuery/">jQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/个人思考/">个人思考</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/工具/">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/微服务架构/">微服务架构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/设计模式/">设计模式</a></li></ul>
     </div>
   </div>
 
@@ -220,7 +220,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/Mannggo/tags/Java/" style="font-size: 18px;">Java</a> <a href="/Mannggo/tags/JavaEE/" style="font-size: 10px;">JavaEE</a> <a href="/Mannggo/tags/JavaEE框架/" style="font-size: 20px;">JavaEE框架</a> <a href="/Mannggo/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/Mannggo/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/Mannggo/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/Mannggo/tags/个人思考/" style="font-size: 10px;">个人思考</a> <a href="/Mannggo/tags/工具/" style="font-size: 12px;">工具</a> <a href="/Mannggo/tags/微服务架构/" style="font-size: 10px;">微服务架构</a> <a href="/Mannggo/tags/数据库/" style="font-size: 16px;">数据库</a> <a href="/Mannggo/tags/设计模式/" style="font-size: 14px;">设计模式</a>
+      <a href="/Mannggo/tags/Java/" style="font-size: 18px;">Java</a> <a href="/Mannggo/tags/JavaEE/" style="font-size: 10px;">JavaEE</a> <a href="/Mannggo/tags/JavaEE框架/" style="font-size: 20px;">JavaEE框架</a> <a href="/Mannggo/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/Mannggo/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/Mannggo/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/Mannggo/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/Mannggo/tags/个人思考/" style="font-size: 10px;">个人思考</a> <a href="/Mannggo/tags/工具/" style="font-size: 12px;">工具</a> <a href="/Mannggo/tags/微服务架构/" style="font-size: 10px;">微服务架构</a> <a href="/Mannggo/tags/数据库/" style="font-size: 16px;">数据库</a> <a href="/Mannggo/tags/设计模式/" style="font-size: 14px;">设计模式</a>
     </div>
   </div>
 
@@ -242,6 +242,10 @@
       <ul>
         
           <li>
+            <a href="/Mannggo/2017/09/25/Nodejs/">Windows下使用Nodejs运行js</a>
+          </li>
+        
+          <li>
             <a href="/Mannggo/2017/09/24/用构建者的角度去学习一门技术/">用构建者的角度去学习一门技术</a>
           </li>
         
@@ -255,10 +259,6 @@
         
           <li>
             <a href="/Mannggo/2017/09/24/Spring回顾（一）IoC & DI/">Spring回顾（一）IoC &amp; DI</a>
-          </li>
-        
-          <li>
-            <a href="/Mannggo/2017/09/24/Struts2知识点回顾（总结）学习思维导图/">Struts2知识点回顾（总结）学习思维导图</a>
           </li>
         
       </ul>

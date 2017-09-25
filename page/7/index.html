@@ -61,6 +61,45 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-JSON字符串转JSON对象" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Mannggo/2017/09/24/JSON字符串转JSON对象/" class="article-date">
+  <time datetime="2017-09-24T04:41:54.990Z" itemprop="datePublished">2017-09-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Mannggo/2017/09/24/JSON字符串转JSON对象/">JSON字符串转JSON对象</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>如下代码:</strong><br>eval()函数使字符串可计算。在这里将字符串转换成了JSON对象<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span> /&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">script</span> <span class="attr">language</span>=<span class="string">"JavaScript"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">			window.onload = init();</span></div><div class="line"><span class="undefined">			function init()&#123;</span></div><div class="line"><span class="undefined">				//JSON字符串</span></div><div class="line"><span class="undefined">				var person = '&#123;age:15,name:"tom",sex:"F"&#125;';</span></div><div class="line"><span class="undefined">				</span></div><div class="line"><span class="undefined">				//将JSON字符串转换为JSON对象</span></div><div class="line"><span class="undefined">				var jsonPerson = eval("(" + person +")");</span></div><div class="line"><span class="undefined">				</span></div><div class="line"><span class="undefined">				alert(jsonPerson.name);</span></div><div class="line"><span class="undefined">			&#125;</span></div><div class="line"><span class="undefined">		</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">		</div><div class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://mannggo.github.io/Mannggo/2017/09/24/JSON字符串转JSON对象/" data-id="cj7zm41nm0000rsj8xriz8286" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Mannggo/tags/Java/">Java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Log4j简单配置（后续补充）" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/Mannggo/2017/09/24/Log4j简单配置（后续补充）/" class="article-date">
@@ -101,7 +140,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://mannggo.github.io/Mannggo/2017/09/24/Log4j简单配置（后续补充）/" data-id="cj7ydjxup000dj8j8dgx04s7o" class="article-share-link">Share</a>
+      <a data-url="https://mannggo.github.io/Mannggo/2017/09/24/Log4j简单配置（后续补充）/" data-id="cj7zm41oh000drsj811uq2ld9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Mannggo/tags/Java/">Java</a></li></ul>
@@ -176,54 +215,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://mannggo.github.io/Mannggo/2017/09/24/JavaScript 原生ajax的简单示例/" data-id="cj7ydjxu60003j8j8o42xxbdq" class="article-share-link">Share</a>
+      <a data-url="https://mannggo.github.io/Mannggo/2017/09/24/JavaScript 原生ajax的简单示例/" data-id="cj7zm41o10003rsj8fti48n75" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Mannggo/tags/Javascript/">Javascript</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-浅谈Java中的equals()和==" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/Mannggo/2017/09/24/浅谈Java中的equals()和==/" class="article-date">
-  <time datetime="2017-09-24T04:37:52.636Z" itemprop="datePublished">2017-09-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/Mannggo/2017/09/24/浅谈Java中的equals()和==/">浅谈Java中的equals()和==</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、String类的equals-与StringBuffer的equals"><a href="#一、String类的equals-与StringBuffer的equals" class="headerlink" title="一、String类的equals()与StringBuffer的equals()"></a>一、String类的equals()与StringBuffer的equals()</h2><p>在学习Java字符串String的时候我们就了解过，字符串的比较要使用String 对象中的equals()方法而不能单纯地像比较其他基本类型一样用==。原因？可能一些基础教程中会谈及到equals()比较的是对象中的内容,==比较的是对象的内存地址。但是这种回答并不完全正确。<br>两个相同字符串内容的String对象，使用equals方法，返回的是true,使用==返回的则是false。而使用StringBuffer创建的内容相同的对象，调用equals也会比较其内容而返回true吗？看下面的例子：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testEquals</span><span class="params">()</span></span>&#123;</div><div class="line">	String s1 = <span class="keyword">new</span> String(<span class="string">"abc"</span>);</div><div class="line">	String s2 = <span class="keyword">new</span> String(<span class="string">"abc"</span>);</div><div class="line">	StringBuffer sb1 = <span class="keyword">new</span> StringBuffer(<span class="string">"abc"</span>);</div><div class="line">	StringBuffer sb2 = <span class="keyword">new</span> StringBuffer(<span class="string">"abc"</span>);</div><div class="line">	</div><div class="line">	System.out.println(s1.equals(s2));</div><div class="line">	System.out.println(sb1.equals(sb2));</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>运行结果：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">true</div><div class="line">false</div></pre></td></tr></table></figure></p>
-<p>通过上面例子，似乎equals()方法并不是对每个类型的对象都比较其内容。我们都知道所有类都继承自Object,Object中也提供了equals方法，所以事实上每个类都继承了一个父类的equals方法。那么Object中的equals方法是如何比较的呢？</p>
-<p>Object.java<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</div><div class="line">       <span class="keyword">return</span> (<span class="keyword">this</span> == obj);</div><div class="line">   &#125;</div></pre></td></tr></table></figure></p>
-<p>从上面的代码可见，Object中的equals()方法实际上就是使用==进行了比较，效果与==等价，比较的事对象的地址，而不是对象的内容。所以，对于所有未重写equals()方法的类来说，用==与equals()是没有差别的。而String类正是因为重写了equals()方法，使之比较字符串内容值，才能用于比较两个字符串内容的异同，StringBuffer并没有对equals()进行重写，我们在调用时候仍然使用了Object的equals()方法，所以返回的是地址值比较的结果。<br>String.java<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object anObject)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">this</span> == anObject) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (anObject <span class="keyword">instanceof</span> String) &#123;</div><div class="line">            String anotherString = (String)anObject;</div><div class="line">            <span class="keyword">int</span> n = value.length;</div><div class="line">            <span class="keyword">if</span> (n == anotherString.value.length) &#123;</div><div class="line">                <span class="keyword">char</span> v1[] = value;</div><div class="line">                <span class="keyword">char</span> v2[] = anotherString.value;</div><div class="line">                <span class="keyword">int</span> i = <span class="number">0</span>;</div><div class="line">                <span class="keyword">while</span> (n-- != <span class="number">0</span>) &#123;</div><div class="line">                    <span class="keyword">if</span> (v1[i] != v2[i])</div><div class="line">                        <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">                    i++;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
-<h2 id="二、equals重写规则"><a href="#二、equals重写规则" class="headerlink" title="二、equals重写规则"></a>二、equals重写规则</h2><p>在JDK的API文档中对类重写equals()方法有以下规则。<br>自反性。:对于任何非空引用值x，x.equals(x)应该返回true。<br>对称性。对于任何非空引用值x和y，x.equals(y)，y.equals(x)应该返回true。<br>传递性。对于任何非空引用值x、y和z，如果x . equals(y)返回true，y. equals(z)返回true，那么x . equals(z)应该返回true。<br>一致性。对于任何非空引用值x和y，如果比较信息没有修改的情况下，多次调用x. equals(y)始终返回true或始终返回false。<br>对于任何非空引用值x，x.equals(null)应返回false。<br>参考内容：JDK在线文档</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://mannggo.github.io/Mannggo/2017/09/24/浅谈Java中的equals()和==/" data-id="cj7ydjxxo002fj8j8nc0m15tk" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Mannggo/tags/Java/">Java</a></li></ul>
 
     </footer>
   </div>
@@ -248,7 +243,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/JavaEE/">JavaEE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/JavaEE框架/">JavaEE框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/jQuery/">jQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/个人思考/">个人思考</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/工具/">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/微服务架构/">微服务架构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/设计模式/">设计模式</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/JavaEE/">JavaEE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/JavaEE框架/">JavaEE框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/Nodejs/">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/jQuery/">jQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/个人思考/">个人思考</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/工具/">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/微服务架构/">微服务架构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Mannggo/tags/设计模式/">设计模式</a></li></ul>
     </div>
   </div>
 
@@ -258,7 +253,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/Mannggo/tags/Java/" style="font-size: 18px;">Java</a> <a href="/Mannggo/tags/JavaEE/" style="font-size: 10px;">JavaEE</a> <a href="/Mannggo/tags/JavaEE框架/" style="font-size: 20px;">JavaEE框架</a> <a href="/Mannggo/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/Mannggo/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/Mannggo/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/Mannggo/tags/个人思考/" style="font-size: 10px;">个人思考</a> <a href="/Mannggo/tags/工具/" style="font-size: 12px;">工具</a> <a href="/Mannggo/tags/微服务架构/" style="font-size: 10px;">微服务架构</a> <a href="/Mannggo/tags/数据库/" style="font-size: 16px;">数据库</a> <a href="/Mannggo/tags/设计模式/" style="font-size: 14px;">设计模式</a>
+      <a href="/Mannggo/tags/Java/" style="font-size: 18px;">Java</a> <a href="/Mannggo/tags/JavaEE/" style="font-size: 10px;">JavaEE</a> <a href="/Mannggo/tags/JavaEE框架/" style="font-size: 20px;">JavaEE框架</a> <a href="/Mannggo/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/Mannggo/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/Mannggo/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/Mannggo/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/Mannggo/tags/个人思考/" style="font-size: 10px;">个人思考</a> <a href="/Mannggo/tags/工具/" style="font-size: 12px;">工具</a> <a href="/Mannggo/tags/微服务架构/" style="font-size: 10px;">微服务架构</a> <a href="/Mannggo/tags/数据库/" style="font-size: 16px;">数据库</a> <a href="/Mannggo/tags/设计模式/" style="font-size: 14px;">设计模式</a>
     </div>
   </div>
 
@@ -280,6 +275,10 @@
       <ul>
         
           <li>
+            <a href="/Mannggo/2017/09/25/Nodejs/">Windows下使用Nodejs运行js</a>
+          </li>
+        
+          <li>
             <a href="/Mannggo/2017/09/24/用构建者的角度去学习一门技术/">用构建者的角度去学习一门技术</a>
           </li>
         
@@ -293,10 +292,6 @@
         
           <li>
             <a href="/Mannggo/2017/09/24/Spring回顾（一）IoC & DI/">Spring回顾（一）IoC &amp; DI</a>
-          </li>
-        
-          <li>
-            <a href="/Mannggo/2017/09/24/Struts2知识点回顾（总结）学习思维导图/">Struts2知识点回顾（总结）学习思维导图</a>
           </li>
         
       </ul>
